@@ -1,0 +1,28 @@
+.crypto-form{
+    margin-top: 90px;
+    text-align: center;
+}
+
+.crypto-form input{
+    margin-right: 8px;
+}
+
+.crypto-submit{
+    margin: 20px;
+}
+
+.crypto-list{
+    margin-top: 65px;
+    text-align: center;
+}
+
+.btn-delete{
+    margin-left: 10px;
+}
+
+ul
+{
+    list-style-type:none;
+    padding:0px;
+    margin:0px;
+}

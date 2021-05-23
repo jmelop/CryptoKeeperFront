@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UsersComponent } from './components/users/users.component';
+import { CryptosComponent } from './cryptos/cryptos.component';
 
 const routes: Routes = [
   {
-    path: 'usuarios',
-    component: UsersComponent,
+    path: 'cryptos',
+    component: CryptosComponent
   }
 ];
 
