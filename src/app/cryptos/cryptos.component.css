@@ -25,4 +25,60 @@ ul
     list-style-type:none;
     padding:0px;
     margin:0px;
+    
 }
+
+.create-form{
+    text-align: center;
+    margin-top: 20px;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    width: 10%;
+}
+
+.create-form li{
+    text-decoration: none !important;
+    margin: 10px;
+}
+
+.create-form li input{
+    margin-top: 12.5px;
+}
+
+.crypto-list{
+    text-transform: uppercase;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    width: 30%;
+    list-style: inside;
+    text-decoration: none !important;
+
+
+}
+
+.crypto-list ul li{ 
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    width: 20vw;
+
+}
+
+.crypto-list button{
+    outline: none !important;
+    display: flex;
+    background: linear-gradient(135deg, #e7d003da, #e3bd77d0);
+    border-radius: 4px;
+    will-change: transform;
+	padding: 0.6em 1.2em;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+	color: white;
+    border: 0px;
+
+}
+
+.crypto-list button:hover {
+    background-color: #d40000
+  }

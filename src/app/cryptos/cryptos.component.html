@@ -1,14 +1,24 @@
 <div class="crypto-form">
-    <p>Add new crypto ₿</p>
-    <label>Name: </label>
-    <input type="text" id="name" [(ngModel)]="newCrypto.crypto">
-    <label>Price: </label>
-    <input type="number" id="price" [(ngModel)]="newCrypto.price"><br>
-    <label>Week price: </label>
-    <input type="text" id="weekPriceChange" [(ngModel)]="newCrypto.weekPriceChange">
-    <label>Market Cap: </label>
-    <input type="number" id="marketCap" [(ngModel)]="newCrypto.marketCap"><br>
-    <input (click)="addCrypto()" class="crypto-submit" type="submit" value="Submit">
+    <p>Add new crypto register:</p>
+    <ul class="create-form">
+        <li>
+            <label>Name: </label>
+            <input type="text" id="name" [(ngModel)]="newCrypto.crypto">
+        </li>
+        <li>
+            <label>Price: </label>
+            <input type="number" id="price" [(ngModel)]="newCrypto.price">
+        </li>
+        <li>
+            <label>Week price: </label>
+            <input type="text" id="weekPriceChange" [(ngModel)]="newCrypto.weekPriceChange">
+        </li>
+        <li>
+            <label>Market Cap: </label>
+            <input type="number" id="marketCap" [(ngModel)]="newCrypto.marketCap"> <br>
+            <input (click)="addCrypto()" class="crypto-submit" type="submit" value="Submit">
+        </li>
+    </ul>
 
 </div>
 
@@ -19,15 +29,15 @@
 
     <ul>
         <p class="task m-3 py-3 px-5 w-50 mx-auto " *ngFor="let crypto of cryptos" routerLink="/cryptos">
-            <li> 
-                <span>{{crypto.crypto}} 
-                <input type="text" *ngIf="false" [(ngModel)]="crypto.crypto" /></span> - 
-                <span>{{crypto.price}} 
-                <input type="text" *ngIf="crypto.editable" [(ngModel)]="crypto.price" /></span> - 
-                <span>{{crypto.weekPriceChange}} 
-                <input type="text" *ngIf="crypto.editable" [(ngModel)]="crypto.weekPriceChange" /></span> -
-                <span>{{crypto.marketCap}} 
-                <input type="text" *ngIf="crypto.editable" [(ngModel)]="crypto.marketCap" /></span>
+            <li>
+                <span>{{crypto.crypto}}
+                    <input type="text" *ngIf="false" [(ngModel)]="crypto.crypto" /></span> - 
+                <span>{{crypto.price}}
+                    <input type="text" *ngIf="crypto.editable" [(ngModel)]="crypto.price" /></span> - 
+                <span>{{crypto.weekPriceChange}}
+                    <input type="text" *ngIf="crypto.editable" [(ngModel)]="crypto.weekPriceChange" /></span> - 
+                <span>{{crypto.marketCap}}
+                    <input type="text" *ngIf="crypto.editable" [(ngModel)]="crypto.marketCap" /></span>
                 <button class="btn-delete" *ngIf="crypto.editable" (click)="updateCrypto(crypto)">Saved Changes</button>
 
 
@@ -41,8 +51,12 @@
 </div>
 
 
-<div class="crypto-list">
+<div class="crypto-list2">
     <p>Obtener un elemento!</p>
-    <input type="text" id="getCryp" [(ngModel)]="findCrypto"><br>
-    <input (click)="getCrypto()" class="crypto-submit" type="submit" value="test">
+    <ul>
+        <li>
+            <input type="text" id="getCryp" [(ngModel)]="findCrypto"><br>
+        </li>
+    </ul>
+    <input (click)="getCrypto()" class="crypto-submit" type="submit" value="Buscar">
 </div>
