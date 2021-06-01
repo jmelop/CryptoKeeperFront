@@ -8,8 +8,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CryptosComponent } from './cryptos/cryptos.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {TabMenuModule} from 'primeng/tabmenu';
+
 
 @NgModule({
   declarations: [
@@ -21,9 +20,7 @@ import {TabMenuModule} from 'primeng/tabmenu';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    TabMenuModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

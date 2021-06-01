@@ -1,62 +1,201 @@
-<div class="crypto-form">
-    <p>Add new crypto register:</p>
-    <ul class="create-form">
-        <li>
-            <label>Name: </label>
-            <input type="text" id="name" [(ngModel)]="newCrypto.crypto">
-        </li>
-        <li>
-            <label>Price: </label>
-            <input type="number" id="price" [(ngModel)]="newCrypto.price">
-        </li>
-        <li>
-            <label>Week price: </label>
-            <input type="text" id="weekPriceChange" [(ngModel)]="newCrypto.weekPriceChange">
-        </li>
-        <li>
-            <label>Market Cap: </label>
-            <input type="number" id="marketCap" [(ngModel)]="newCrypto.marketCap"> <br>
-            <input (click)="addCrypto()" class="crypto-submit" type="submit" value="Submit">
-        </li>
-    </ul>
+<!-- Add new crypto-->
+<div class="grid mt-8  gap-8 grid-cols-1 ">
+    <div class="flex flex-col " id="section">
+        <div class="bg-white shadow-md rounded-3xl p-5">
+            <div class="flex flex-col sm:flex-row items-center ">
+                <h2 class="font-semibold text-lg mr-auto">Crypto info</h2>
+                <div class="w-full sm:w-auto sm:ml-auto mt-3 sm:mt-0"></div>
+            </div>
+            <div class="mt-5">
+                <div class="form">
+                    <div class="md:space-y-2 mb-3">
+                        <label class="text-xs font-semibold text-gray-600 py-2">Add new crypto register:<abbr
+                                class="hidden" title="required">*</abbr></label>
+                        <div class="flex items-center py-6">
+                            <div class="w-12 h-12 mr-4 flex-none rounded-xl border overflow-hidden">
+                                <img class="w-12 h-12 mr-4 object-cover"
+                                    src="https://www.comocomprarcripto.com/wp-content/uploads/2019/08/C%C3%B3mo-Comprar-Ethereum-ETH.png"
+                                    alt="Avatar Upload">
+                            </div>
+                            <label class="cursor-pointer ">
+                                <span
+                                    class="focus:outline-none text-white text-sm py-2 px-4 rounded-full bg-green-400 hover:bg-green-500 hover:shadow-lg">Browse</span>
+                                <input type="file" class="hidden" :multiple="multiple" :accept="accept">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="md:flex md:flex-row md:space-x-4 w-full text-xs">
+                        <div class="mb-3 md:space-y-2 w-full text-xs">
+                            <label class="font-semibold text-gray-600 py-2">Crypto<abbr
+                                    title="required">*</abbr></label>
+                            <select [(ngModel)]="newCrypto.crypto"
+                                class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full "
+                                required="required" >
+                                <option>Select crypto</option>
+                                <option value="BTC">BTC</option>
+                                <option value="ETH">ETH</option>
+                            </select>
+                            <p class="text-sm text-red-500 hidden mt-3" id="error">Please fill out this field.</p>
+                        </div>
+                        <div class="mb-3 md:space-y-2 w-full text-xs">
+                            <label class="font-semibold text-gray-600 py-2">Amount <abbr
+                                    title="required">*</abbr></label>
+                            <input placeholder="Amount" [(ngModel)]="newCrypto.amount"
+                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                                required="required" type="number" name="integration[shop_name]"
+                                id="integration_shop_name">
+                            <p class="text-red text-xs hidden">Please fill out this field.</p>
+                        </div>
+                        <div class="mb-3 md:space-y-2 w-full text-xs">
+                            <label class="font-semibold text-gray-600 py-2">Price <abbr
+                                    title="required">*</abbr></label>
+                            <input placeholder="Price bought" [(ngModel)]="newCrypto.price"
+                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                                required="required" type="text" name="integration[shop_name]"
+                                id="integration_shop_name">
+                            <p class="text-red text-xs hidden">Please fill out this field.</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 md:space-y-2 w-full text-xs">
+                        <label class=" font-semibold text-gray-600 py-2">Company Website</label>
+                        <div class="flex flex-wrap items-stretch w-full mb-4 relative">
+                            <div class="flex">
+                                <span
+                                    class="flex items-center leading-normal bg-grey-lighter border-1 rounded-r-none border border-r-0 border-blue-300 px-3 whitespace-no-wrap text-grey-dark text-sm w-12 h-10 bg-blue-300 justify-center items-center  text-xl rounded-lg text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                        </path>
+                                    </svg>
+                                </span>
+                            </div>
+                            <input type="text" [(ngModel)]="newCrypto.website"
+                                class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border border-l-0 h-10 border-grey-light rounded-lg rounded-l-none px-3 relative focus:border-blue focus:shadow"
+                                placeholder="https://">
+                        </div>
+                    </div>
+                    <div class="md:flex md:flex-row md:space-x-4 w-full text-xs">
+                        <div class="w-full flex flex-col mb-3">
+                            <label class="font-semibold text-gray-600 py-2">Date</label>
+                            <input [(ngModel)]="newCrypto.date"
+                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                                type="date" name="integration[street_address]" id="integration_street_address">
+                        </div>
+                        <div class="w-full flex flex-col mb-3">
+                            <label class="font-semibold text-gray-600 py-2">Operation<abbr
+                                    title="required">*</abbr></label>
+                            <select [(ngModel)]="newCrypto.operation"
+                                class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full "
+                                required="required" name="integration[city_id]" id="integration_city_id">
+                                <option value="">Seleted operation</option>
+                                <option value="Buy">Buy</option>
+                                <option value="Sell">Sell</option>
+                            </select>
+                            <p class="text-sm text-red-500 hidden mt-3" id="error">Please fill out this field.</p>
+                        </div>
+                    </div>
+                    <div class="flex-auto w-full mb-1 text-xs space-y-2">
+                        <label class="font-semibold text-gray-600 py-2">Description</label>
+                        <textarea required="" name="message" id="" [(ngModel)]="newCrypto.description"
+                            class="w-full min-h-[100px] max-h-[300px] h-28 appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg  py-4 px-4"
+                            placeholder="Enter your comapny info" spellcheck="false"></textarea>
+                        <p class="text-xs text-gray-400 text-left my-3">You inserted 0 characters</p>
+                    </div>
 
+
+                    <p class="text-xs text-red-500 text-right my-3">Required fields are marked with an
+                        asterisk <abbr title="Required field">*</abbr></p>
+                    <div class="mt-5 text-right md:space-x-3 md:block flex flex-col-reverse">
+
+                        <button (click)="addCrypto()"
+                            class="mb-2 md:mb-0 bg-green-400 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-green-500 ">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
-<div class="crypto-list">
+<!-- Crypto List -->
+<div class="flex flex-col">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 " id="section2">
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Crypto
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Amount
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Operation
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Price
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Date
+                            </th>
+                            <th scope="col" class="relative px-6 py-3">
+                                <span class="sr-only">Edit</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr *ngFor="let crypto of cryptos" routerLink="/cryptos">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">
+                                            {{crypto.crypto}}
+                                            <input type="text" *ngIf="false" [(ngModel)]="crypto.crypto" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">
+                                    {{crypto.amount}}
+                                    <input type="text" *ngIf="false" [(ngModel)]="crypto.price" />
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span
+                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    {{crypto.operation}}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {{crypto.price}}$
+                                <input type="text" *ngIf="crypto.editable" [(ngModel)]="crypto.price" />
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {{crypto.date | date: 'dd/MM/yyyy'}}
+                                <input type="text" *ngIf="crypto.editable" [(ngModel)]="crypto.date" />
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a *ngIf="!crypto.editable" (click)="deleteCrypto(crypto.crypto)"
+                                    class="text-indigo-600 hover:text-indigo-900">Delete </a>
+                                <a>/</a>
+                                <a *ngIf="!crypto.editable" (click)="editState(crypto)"
+                                    class="text-indigo-600 hover:text-indigo-900"> Edit</a>
+                            </td>
+                        </tr>
 
-    <p>Cryptos list!</p>
-
-    <ul>
-        <p class="task m-3 py-3 px-5 w-50 mx-auto " *ngFor="let crypto of cryptos" routerLink="/cryptos">
-            <li>
-                <span>{{crypto.crypto}}
-                    <input type="text" *ngIf="false" [(ngModel)]="crypto.crypto" /></span> - 
-                <span>{{crypto.price}}
-                    <input type="text" *ngIf="crypto.editable" [(ngModel)]="crypto.price" /></span> - 
-                <span>{{crypto.weekPriceChange}}
-                    <input type="text" *ngIf="crypto.editable" [(ngModel)]="crypto.weekPriceChange" /></span> - 
-                <span>{{crypto.marketCap}}
-                    <input type="text" *ngIf="crypto.editable" [(ngModel)]="crypto.marketCap" /></span>
-                <button class="btn-delete" *ngIf="crypto.editable" (click)="updateCrypto(crypto)">Saved Changes</button>
-
-
-
-                <button class="btn-delete" (click)="deleteCrypto(crypto.crypto)">Delete</button>
-                <button class="btn-delete" *ngIf="!crypto.editable" (click)="editState(crypto)">Update</button>
-            </li>
-        </p>
-    </ul>
-
-</div>
-
-
-<div class="crypto-list2">
-    <p>Obtener un elemento!</p>
-    <ul>
-        <li>
-            <input type="text" id="getCryp" [(ngModel)]="findCrypto"><br>
-        </li>
-    </ul>
-    <input (click)="getCrypto()" class="crypto-submit" type="submit" value="Buscar">
+                        <!-- More people... -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

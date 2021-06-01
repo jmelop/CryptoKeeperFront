@@ -1,6 +1,9 @@
 export class Crypto {
     crypto: any;
+    amount: any;
     price: any;
-    weekPriceChange: any;
-    marketCap: any;
+    website: any;
+    date: any;
+    operation: any;
+    description: any;
 }

@@ -51,9 +51,12 @@ export class CryptosService {
 
         return {
           crypto: m.crypto,
+          amount: m.amount,
           price: m.price,
-          weekPriceChange: m.weekPriceChange,
-          marketCap: m.marketCap
+          website: m.website,
+          date: m.date,
+          operation: m.operation,
+          description: m.description
         }
       })
   }

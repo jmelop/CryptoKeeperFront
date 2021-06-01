@@ -82,3 +82,19 @@ ul
 .crypto-list button:hover {
     background-color: #d40000
   }
+
+
+#section{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-bottom: 90px;
+}
+
+#section2{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 90px;
+
+}

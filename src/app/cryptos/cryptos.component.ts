@@ -14,8 +14,8 @@ export class CryptosComponent implements OnInit {
   uno: any;
   cryptos: any = [];
   findCrypto: string = '';
-  newCrypto: Crypto = { crypto: '', price: 0, weekPriceChange: '', marketCap: '' };
-  newUpdatedCrypto: Crypto = { crypto: '', price: 0, weekPriceChange: '', marketCap: '' };
+  newCrypto: Crypto = { crypto: '', amount: 0, price: 0, website: '', date: '', operation: '', description: '' };
+  newUpdatedCrypto: Crypto = { crypto: '', amount: 0, price: 0, website: '', date: '', operation: '', description: '' };
   permission = true;
 
   constructor(private cryptoServices: CryptosService) {
@@ -40,7 +40,7 @@ export class CryptosComponent implements OnInit {
       .then(u => {
         if (u === 'OK') {
           this.cryptos.push(test1);
-          this.newCrypto = { crypto: '', price: 0, weekPriceChange: '', marketCap: '' };
+          this.newCrypto = { crypto: '', amount: 0, price: 0, website: '', date: '', operation: '', description: '' };
         }
       })
   }
