@@ -31,7 +31,7 @@
                             <select [(ngModel)]="newCrypto.crypto"
                                 class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full "
                                 required="required" >
-                                <option>Select crypto</option>
+                                <option value="">Select crypto</option>
                                 <option value="BTC">BTC</option>
                                 <option value="ETH">ETH</option>
                             </select>
@@ -42,8 +42,8 @@
                                     title="required">*</abbr></label>
                             <input placeholder="Amount" [(ngModel)]="newCrypto.amount"
                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
-                                required="required" type="number" name="integration[shop_name]"
-                                id="integration_shop_name">
+                                required="required" type="number" 
+                                >
                             <p class="text-red text-xs hidden">Please fill out this field.</p>
                         </div>
                         <div class="mb-3 md:space-y-2 w-full text-xs">
@@ -51,8 +51,7 @@
                                     title="required">*</abbr></label>
                             <input placeholder="Price bought" [(ngModel)]="newCrypto.price"
                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
-                                required="required" type="text" name="integration[shop_name]"
-                                id="integration_shop_name">
+                                required="required" type="text" >
                             <p class="text-red text-xs hidden">Please fill out this field.</p>
                         </div>
                     </div>
@@ -80,14 +79,14 @@
                             <label class="font-semibold text-gray-600 py-2">Date</label>
                             <input [(ngModel)]="newCrypto.date"
                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
-                                type="date" name="integration[street_address]" id="integration_street_address">
+                                type="date" >
                         </div>
                         <div class="w-full flex flex-col mb-3">
                             <label class="font-semibold text-gray-600 py-2">Operation<abbr
                                     title="required">*</abbr></label>
                             <select [(ngModel)]="newCrypto.operation"
                                 class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full "
-                                required="required" name="integration[city_id]" id="integration_city_id">
+                                required="required" >
                                 <option value="">Seleted operation</option>
                                 <option value="Buy">Buy</option>
                                 <option value="Sell">Sell</option>
@@ -99,7 +98,7 @@
                         <label class="font-semibold text-gray-600 py-2">Description</label>
                         <textarea required="" name="message" id="" [(ngModel)]="newCrypto.description"
                             class="w-full min-h-[100px] max-h-[300px] h-28 appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg  py-4 px-4"
-                            placeholder="Enter your comapny info" spellcheck="false"></textarea>
+                            placeholder="Enter your transaction info" spellcheck="false"></textarea>
                         <p class="text-xs text-gray-400 text-left my-3">You inserted 0 characters</p>
                     </div>
 
