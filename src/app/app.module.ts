@@ -6,8 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { RegisterComponent } from './components/register/register.component';
+import { RegisterComponent } from './components/home/register/register.component';
 import { CryptosComponent } from './cryptos/cryptos.component';
+import { HomeComponent } from './components/home/home/home.component';
+import { LoginComponent } from './components/home/login/login.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { CryptosComponent } from './cryptos/cryptos.component';
     AppComponent,
     NavbarComponent,
     RegisterComponent,
-    CryptosComponent
+    CryptosComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

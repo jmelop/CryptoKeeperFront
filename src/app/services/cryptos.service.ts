@@ -16,22 +16,6 @@ export class CryptosService {
       .then(rest => rest.data)
   }
 
-  //post(crypto: Crypto) {
-  //return this.getAllCryptos()
-  //.then(u => {
-  //let test1 = u.filter(data => crypto.crypto === data.crypto)
-  //if (test1.length == 0) {
-  //return axios.post(this.apiUrl, crypto)
-  //.then(res => {
-  //res.data;
-  //return 'OK';
-  //})
-  //} else {
-  //return 'error'
-  //}
-  //})
-  //}
-
   post(crypto: Crypto) {
     return axios.post(this.apiUrl, crypto)
       .then(res => {
