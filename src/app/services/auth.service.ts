@@ -11,11 +11,22 @@ export class AuthService {
 
   apiUrl = "http://localhost:4000/";
 
-  login(user: User){
-    return axios.post(this.apiUrl+'login', user)
-    .then( u => {
-      return u.data;
-    })
+  login(user: User) {
+    return axios.post(this.apiUrl + 'login', user)
+      .then(u => {
+        return u.data;
+      })
+  }
+
+  register(user: User) {
+    return axios.post(this.apiUrl + 'register', user)
+      .then(u => {
+        if (u.data) {
+          return 'OK';
+        } else {
+          return 'Error'
+        }
+      })
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CryptosService } from '../services/cryptos.service';
-import { Crypto } from '../models/crypto.model';
+import { CryptosService } from '../../../services/cryptos.service';
+import { Crypto } from '../../../models/crypto.model';
+import { Output, EventEmitter } from '@angular/core';
 
 
 
@@ -10,6 +11,7 @@ import { Crypto } from '../models/crypto.model';
   styleUrls: ['./cryptos.component.css']
 })
 export class CryptosComponent implements OnInit {
+  @Output() newItemEvent = new EventEmitter<string>();
 
   uno: any;
   cryptos: any = [];
@@ -17,6 +19,7 @@ export class CryptosComponent implements OnInit {
   newCrypto: Crypto = { crypto: '', amount: 0, price: 0, website: '', date: '', operation: '', description: '' };
   newUpdatedCrypto: Crypto = { crypto: '', amount: 0, price: 0, website: '', date: '', operation: '', description: '' };
   permission = true;
+  rla = 'crypt'
 
   constructor(private cryptoServices: CryptosService) {
 
@@ -25,12 +28,13 @@ export class CryptosComponent implements OnInit {
 
   ngOnInit(): void {
     this.cryptoServices.getAllCryptos().then(u => { this.cryptos = u; })
+    this.newItemEvent.emit('cripto')
   }
 
   editState(crypto: any) {
-    this.cryptos.map((u : any) => {
-    u.editable = false
-    crypto.editable = true;
+    this.cryptos.map((u: any) => {
+      u.editable = false
+      crypto.editable = true;
     })
   }
 

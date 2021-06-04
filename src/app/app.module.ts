@@ -7,9 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/home/register/register.component';
-import { CryptosComponent } from './cryptos/cryptos.component';
+import { CryptosComponent } from './components/user/cryptos/cryptos.component';
 import { HomeComponent } from './components/home/home/home.component';
 import { LoginComponent } from './components/home/login/login.component';
+import { ReportsComponent } from './components/user/reports/reports.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { LoginComponent } from './components/home/login/login.component';
     RegisterComponent,
     CryptosComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,
