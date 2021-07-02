@@ -5,6 +5,7 @@ import { LoginComponent } from './components/home/login/login.component';
 import { RegisterComponent } from './components/home/register/register.component';
 import { CryptosComponent } from './components/user/cryptos/cryptos.component';
 import { ReportsComponent } from './components/user/reports/reports.component';
+import { KeeperGuard } from './keeper/keeper.guard';
 
 const routes: Routes = [
 
@@ -14,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'cryptos',
-    component: CryptosComponent
+    component: CryptosComponent,
+    canActivate: [KeeperGuard]
   },
   {
     path: 'login',
@@ -26,7 +28,8 @@ const routes: Routes = [
   },
   {
     path: 'reports',
-    component: ReportsComponent
+    component: ReportsComponent,
+    canActivate: [KeeperGuard]
   }
 ];
 

@@ -1,32 +1,32 @@
+
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import axios from 'axios';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+    constructor() { }
 
-  apiUrl = "http://localhost:4000/";
+    apiUrl = "http://localhost:4000/";
 
-  login(user: User) {
-    return axios.post(this.apiUrl + 'login', user)
-      .then(u => {
-        return u.data;
-      })
-  }
+    login(user: User) {
+        return axios.post(this.apiUrl + 'login', user)
+            .then(u => {
+                return u.data;
+            })
+    }
 
-  register(user: User) {
-    return axios.post(this.apiUrl + 'register', user)
-      .then(u => {
-        if (u.data) {
-          return 'OK';
-        } else {
-          return 'Error'
-        }
-      })
-  }
-
+    register(user: User) {
+        return axios.post(this.apiUrl + 'register', user)
+            .then(u => {
+                if (u.data) {
+                    return 'OK';
+                } else {
+                    return 'Error'
+                }
+            })
+    }
 }

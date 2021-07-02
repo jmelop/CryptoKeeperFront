@@ -11,6 +11,9 @@ import { CryptosComponent } from './components/user/cryptos/cryptos.component';
 import { HomeComponent } from './components/home/home/home.component';
 import { LoginComponent } from './components/home/login/login.component';
 import { ReportsComponent } from './components/user/reports/reports.component';
+import { ChartsModule } from 'ng2-charts';
+import { CookieService } from 'ngx-cookie-service';
+
 
 
 @NgModule({
@@ -26,9 +29,10 @@ import { ReportsComponent } from './components/user/reports/reports.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
