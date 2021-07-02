@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CryptosService } from '../../../services/cryptos.service';
 import { Crypto } from '../../../models/crypto.model';
-import { Output, EventEmitter } from '@angular/core';
-
-
 
 @Component({
   selector: 'app-cryptos',
@@ -11,24 +8,19 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrls: ['./cryptos.component.css']
 })
 export class CryptosComponent implements OnInit {
-  @Output() newItemEvent = new EventEmitter<string>();
 
-  uno: any;
-  cryptos: any = [];
+  cryptos: Crypto[] = [];
   findCrypto: string = '';
   newCrypto: Crypto = { crypto: '', amount: 0, price: 0, website: '', date: '', operation: '', description: '' };
-  newUpdatedCrypto: Crypto = { crypto: '', amount: 0, price: 0, website: '', date: '', operation: '', description: '' };
-  permission = true;
-  rla = 'crypt'
 
-  constructor(private cryptoServices: CryptosService) {
-
-  }
+  constructor(private cryptoServices: CryptosService) {}
 
 
   ngOnInit(): void {
-    this.cryptoServices.getAllCryptos().then(u => { this.cryptos = u; })
-    this.newItemEvent.emit('cripto')
+    this.cryptoServices.getAllCryptos().then(u => { 
+      this.cryptos = u; 
+      console.log(this.getNumberCryptos());
+    })
   }
 
   editState(crypto: any) {
@@ -50,10 +42,21 @@ export class CryptosComponent implements OnInit {
   }
 
   getCrypto() {
-    this.cryptoServices.getCrypto(this.findCrypto).then(u => {
-      this.uno = u
-      alert(this.uno.crypto)
-    })
+    this.cryptoServices.getCrypto(this.findCrypto);
+  }
+
+  getNumberCryptos(){
+    let uniqueCryptos: String[] = [];
+
+    this.cryptos.map(crypto => {
+      const exist = uniqueCryptos.find(unique => unique === crypto.crypto);
+
+      if(!exist){
+        uniqueCryptos.push(crypto.crypto);
+      }
+    });
+    
+    return uniqueCryptos.length;
   }
 
   updateCrypto(crypto: any) {

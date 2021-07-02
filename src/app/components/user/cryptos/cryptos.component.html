@@ -270,8 +270,8 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">
-                                    {{crypto.amount}}
-                                    <input type="text" *ngIf="false" [(ngModel)]="crypto.price" />
+                                    <p *ngIf="!crypto.editable">{{crypto.amount}}</p>
+                                    <input class="border border-grey-lighter rounded-lg p-2" type="number" *ngIf="crypto.editable" [(ngModel)]="crypto.amount" />
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
@@ -281,19 +281,23 @@
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{crypto.price}}$
-                                <input type="text" *ngIf="crypto.editable" [(ngModel)]="crypto.price" />
+                                <p *ngIf="!crypto.editable">{{crypto.price}}$</p>
+                                <input class="border border-grey-lighter rounded-lg p-2" type="number" *ngIf="crypto.editable" [(ngModel)]="crypto.price" />
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{crypto.date | date: 'dd/MM/yyyy'}}
-                                <input type="text" *ngIf="crypto.editable" [(ngModel)]="crypto.date" />
+                                <p *ngIf="!crypto.editable">{{crypto.date | date: 'dd/MM/yyyy'}}</p>
+                                <input class="border border-grey-lighter rounded-lg p-2" type="string" *ngIf="crypto.editable" [(ngModel)]="crypto.date" />
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a *ngIf="!crypto.editable" (click)="deleteCrypto(crypto.crypto)"
-                                    class="text-indigo-600 hover:text-indigo-900">Delete </a>
-                                <a>/</a>
                                 <a *ngIf="!crypto.editable" (click)="editState(crypto)"
-                                    class="text-indigo-600 hover:text-indigo-900"> Edit</a>
+                                    class="text-indigo-600 hover:text-indigo-900 cursor-pointer"> Edit</a>
+                                    
+                                <a *ngIf="!crypto.editable">/</a>
+
+                                <a *ngIf="!crypto.editable" (click)="deleteCrypto(crypto.crypto)"
+                                    class="text-indigo-600 hover:text-indigo-900 cursor-pointer">Delete </a>
+                                <a *ngIf="crypto.editable" (click)="updateCrypto(crypto)"
+                                    class="text-indigo-600 hover:text-indigo-900 cursor-pointer">OK </a>
                             </td>
                         </tr>
 

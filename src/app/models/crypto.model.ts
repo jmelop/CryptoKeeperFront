@@ -6,4 +6,5 @@ export class Crypto {
     date: any;
     operation: any;
     description: any;
+    editable?: any;
 }
