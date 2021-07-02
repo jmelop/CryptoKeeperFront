@@ -6,11 +6,18 @@
         </h2>
         <h3 class="mt-6  text-3xl leading-8 font-medium tracking-tight text-gray-900 sm:text-4xl">Your data</h3>
         <p class="mt-4 mb-16 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-            Interactive financial charts for analysis with our crypto data
+            Interactive financial charts for analysis with your crypto data
         </p>
     </div>
+
+    <div class="lg:text-center mt-10">
+        <h3 class="mt-6 mb-8 text-3xl leading-8 font-medium tracking-tight text-gray-900 sm:text-2xl">Profit charts</h3>
+    </div>
+    
     <div class="grid grid-cols-2 gap-4 ml-16 mr-16">
         <div class="py-4 px-8 bg-white shadow-lg rounded-lg">
+            <h2 class="text-base text-white font-light inline rounded px-4 py-2 tracking-wide uppercase bg-gray-900">Monthly profit
+            </h2>
             <canvas baseChart [chartType]="'line'" [legend]="true" [datasets]="chartData" [labels]="chartLabels"
                 [options]="chartOptions">
             </canvas>
