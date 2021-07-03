@@ -1,10 +1,10 @@
 export class Crypto {
-    crypto: any;
-    amount: any;
-    price: any;
-    website: any;
-    date: any;
-    operation: any;
-    description: any;
-    editable?: any;
+    crypto: string;
+    amount: number;
+    price: number;
+    website: string;
+    date: string;
+    operation: string;
+    description: string;
+    editable?: boolean;
 }

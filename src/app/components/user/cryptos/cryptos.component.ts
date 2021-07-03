@@ -12,6 +12,8 @@ export class CryptosComponent implements OnInit {
   cryptos: Crypto[] = [];
   findCrypto: string = '';
   newCrypto: Crypto = { crypto: '', amount: 0, price: 0, website: '', date: '', operation: '', description: '' };
+  numberCryptos = 0;
+  moneySpend = 0;
 
   constructor(private cryptoServices: CryptosService) {}
 
@@ -19,7 +21,7 @@ export class CryptosComponent implements OnInit {
   ngOnInit(): void {
     this.cryptoServices.getAllCryptos().then(u => { 
       this.cryptos = u; 
-      console.log(this.getNumberCryptos());
+      this.getCryptosData();
     })
   }
 
@@ -37,38 +39,47 @@ export class CryptosComponent implements OnInit {
         if (u === 'OK') {
           this.cryptos.push(test1);
           this.newCrypto = { crypto: '', amount: 0, price: 0, website: '', date: '', operation: '', description: '' };
+          this.getCryptosData();
         }
       })
-  }
+  };
 
   getCrypto() {
     this.cryptoServices.getCrypto(this.findCrypto);
-  }
+  };
 
-  getNumberCryptos(){
+
+  updateCrypto(crypto: any) {
+    crypto.editable = false;
+    this.cryptoServices.updateCrypto(crypto.crypto, crypto);
+  };
+
+  deleteCrypto(id: string) {
+    this.cryptoServices.deleteCrypto(id)
+      .then(() => {
+        const cryptosFiltered = this.cryptos.filter((crypto: any) => crypto.crypto != id)
+        this.cryptos = cryptosFiltered;
+        this.getCryptosData();
+      })
+  };
+
+  
+  getCryptosData(){
     let uniqueCryptos: String[] = [];
+    let count: number = 0;
 
     this.cryptos.map(crypto => {
       const exist = uniqueCryptos.find(unique => unique === crypto.crypto);
+      count += Number(crypto.price);
+      console.log(count);
 
       if(!exist){
         uniqueCryptos.push(crypto.crypto);
       }
     });
-    
-    return uniqueCryptos.length;
+
+    this.moneySpend = count;
+    this.numberCryptos = uniqueCryptos.length;
   }
 
-  updateCrypto(crypto: any) {
-    crypto.editable = false;
-    this.cryptoServices.updateCrypto(crypto.crypto, crypto);
-  }
-
-  deleteCrypto(id: string) {
-    this.cryptoServices.deleteCrypto(id)
-      .then(u => {
-        const cryptosFiltered = this.cryptos.filter((crypto: any) => crypto.crypto != id)
-        this.cryptos = cryptosFiltered;
-      })
-  }
 }
