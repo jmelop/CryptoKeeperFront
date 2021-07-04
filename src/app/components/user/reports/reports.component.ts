@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Label, MultiDataSet } from 'ng2-charts';
 import { ChartDataSets, ChartType, RadialChartOptions } from 'chart.js';
 import { CryptosService } from 'src/app/services/cryptos.service';
-import { CryptoData } from 'src/app/models/crypto-data.model';
+import { CryptoReport } from 'src/app/models/crypto-report.model';
 
 
 @Component({
@@ -14,8 +14,8 @@ import { CryptoData } from 'src/app/models/crypto-data.model';
 export class ReportsComponent implements OnInit {
 
   cryptos: any[] = [];
-  cryptoObj: CryptoData = { crypto: '', price: 0 };
-  cryptoData: CryptoData[] = [];
+  cryptoObj: CryptoReport = { crypto: '', price: 0 };
+  cryptoData: CryptoReport[] = [];
 
   chartData = [
     {
@@ -101,9 +101,11 @@ export class ReportsComponent implements OnInit {
 
         this.cryptoObj = { crypto: '', price: 0 };
       }
-    })
+    });
+  };
 
-  }
+
+
 
 }
 

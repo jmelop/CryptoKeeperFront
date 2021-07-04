@@ -1,4 +1,4 @@
 export class CryptoData {
-    crypto: string;
-    price: number;
+    name: string;
+    shortname: string;
 }
