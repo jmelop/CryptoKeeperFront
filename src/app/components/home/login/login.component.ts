@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private cookieService: CookieService) { }
 
-  newLogin: User = { name: 'Pepe', email: '', password: '', role: 'user' };
+  newLogin: User = { name: '', email: '', password: '', role: '' };
 
   ngOnInit(): void {
     if (this.cookieService.get('token_access')) {

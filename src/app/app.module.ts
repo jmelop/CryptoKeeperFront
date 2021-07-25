@@ -14,6 +14,10 @@ import { ReportsComponent } from './components/user/reports/reports.component';
 import { ChartsModule } from 'ng2-charts';
 import { CookieService } from 'ngx-cookie-service';
 import { NewsComponent } from './components/user/news/news.component';
+import { PrivacyPolicyComponent } from './components/home/privacy-policy/privacy-policy.component';
+import { TermsOfUseComponent } from './components/home/terms-of-use/terms-of-use.component';
+import { RulesComponent } from './components/home/rules/rules.component';
+import { CommunityComponent } from './components/home/community/community.component';
 
 
 
@@ -27,7 +31,11 @@ import { NewsComponent } from './components/user/news/news.component';
     LoginComponent,
     HomeComponent,
     ReportsComponent,
-    NewsComponent
+    NewsComponent,
+    PrivacyPolicyComponent,
+    TermsOfUseComponent,
+    RulesComponent,
+    CommunityComponent
   ],
   imports: [
     BrowserModule,
