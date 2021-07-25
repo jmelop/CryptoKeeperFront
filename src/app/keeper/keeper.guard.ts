@@ -18,15 +18,6 @@ export class KeeperGuard implements CanActivate {
       this.router.navigate(['/', 'login'])
     }
   }
-
-  getDecodedAccessToken(token: string): any {
-    try{
-        return jwt_decode(token);
-    }
-    catch(Error){
-        return null;
-    }
-  }
   
   canActivate(
     route: ActivatedRouteSnapshot,

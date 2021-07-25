@@ -14,16 +14,19 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private cookieService: CookieService) { }
 
-  newLogin: User = { name: 'Pepe', email: '', password: '', role:'user' };
+  newLogin: User = { name: 'Pepe', email: '', password: '', role: 'user' };
 
   ngOnInit(): void {
+    if (this.cookieService.get('token_access')) {
+      this.router.navigateByUrl('/cryptos')
+    }
   }
 
-  login(){
-    this.authService.login(this.newLogin).then( res => {
-      if(res){
-        const p = res.token
-        this.cookieService.set('token_access', p, 4, '/')
+  login() {
+    this.authService.login(this.newLogin).then(res => {
+      if (res) {
+        const token = res.token
+        this.cookieService.set('token_access', token, 4, '/')
         this.router.navigateByUrl('/cryptos')
       }
     })

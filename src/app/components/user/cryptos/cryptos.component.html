@@ -292,7 +292,7 @@
                                     
                                 <a *ngIf="!crypto.editable">/</a>
 
-                                <a *ngIf="!crypto.editable" (click)="deleteCrypto(crypto.crypto)"
+                                <a *ngIf="!crypto.editable" (click)="deleteCrypto(crypto)"
                                     class="text-indigo-600 hover:text-indigo-900 cursor-pointer">Delete </a>
                                 <a *ngIf="crypto.editable" (click)="updateCrypto(crypto)"
                                     class="text-indigo-600 hover:text-indigo-900 cursor-pointer">OK </a>

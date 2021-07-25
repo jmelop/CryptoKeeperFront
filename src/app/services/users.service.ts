@@ -12,13 +12,6 @@ export class UsersService {
 
   constructor() { }
 
-  addUser(user: User) {
-    return axios.post(this.apiUrl, user)
-      .then(res => {
-        return 'OK';
-      })
-  }
-
   getUser(id: string){
     return axios.get(this.apiUrl + id)
     .then(res => {

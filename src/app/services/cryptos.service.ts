@@ -19,12 +19,8 @@ export class CryptosService {
   post(crypto: Crypto) {
     return axios.post(this.apiUrl, crypto)
       .then(res => {
-        if(res.data === 'Error, ya existe'){
-          return 'Error';
-        }else{
-          return 'OK'
-        }
-      })
+        return res.data;
+      }).catch((err) => { throw err })
   }
 
 

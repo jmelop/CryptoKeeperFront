@@ -27,20 +27,7 @@ export class ReportsComponent implements OnInit {
 
 
 
-  chartData: GraphData[] = [
-    /*     {
-          data: [330, 0, 0, 0],
-          label: this.cryptoLabel[0]
-        },
-        {
-          data: [120, 455, 100, 340],
-          label: 'Account B'
-        },
-        {
-          data: [45, 67, 800, 500],
-          label: 'Account C'
-        } */
-  ];
+  chartData: GraphData[] = [];
 
   chartLabels = this.lastStringMonths;
 
@@ -63,7 +50,6 @@ export class ReportsComponent implements OnInit {
       'rgb(54, 162, 235)']
   }];
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////////
 
   constructor(private cryptoServices: CryptosService) { }
 
@@ -75,8 +61,6 @@ export class ReportsComponent implements OnInit {
       this.getCryptoDataChart();
       this.doughnutChartLabels = this.cryptoData.map(crypto => crypto.crypto);
       this.doughnutChartData = this.cryptoData.map(crypto => Number(crypto.price));
-      //console.log(this.cryptoData);
-
     })
   }
 
@@ -132,7 +116,7 @@ export class ReportsComponent implements OnInit {
     });
 
     this.chartData = [];
-    
+
     for (var i = 0; i <= 2; i++) {
       let arr: number[] = [];
 

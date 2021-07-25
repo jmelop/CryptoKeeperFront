@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   newUser: User = { name: '', email: '', password: '', role: 'user' }
 
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
   saveUser() {
     this.authService.register(this.newUser).then(u => {
       if (u === 'OK') {
-        alert('Usuario registrado');
+        this.router.navigateByUrl('/login')
       }
     })
   }

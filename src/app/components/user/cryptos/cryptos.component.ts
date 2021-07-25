@@ -48,11 +48,10 @@ export class CryptosComponent implements OnInit {
   }
 
   addCrypto() {
-    let test1 = { ...this.newCrypto };
     this.cryptoServices.post(this.newCrypto)
-      .then(u => {
-        if (u === 'OK') {
-          this.cryptos.push(test1);
+      .then(crypto => {
+        if (typeof crypto !== undefined) {
+          this.cryptos.push(crypto);
           this.newCrypto = { crypto: '', amount: 0, price: 0, website: '', date: '', operation: '', description: '' };
           this.getCryptosData();
         }
@@ -66,13 +65,13 @@ export class CryptosComponent implements OnInit {
 
   updateCrypto(crypto: any) {
     crypto.editable = false;
-    this.cryptoServices.updateCrypto(crypto.crypto, crypto);
+    this.cryptoServices.updateCrypto(crypto._id, crypto);
   };
 
-  deleteCrypto(id: string) {
-    this.cryptoServices.deleteCrypto(id)
+  deleteCrypto(crypto: any) {
+    this.cryptoServices.deleteCrypto(crypto._id)
       .then(() => {
-        const cryptosFiltered = this.cryptos.filter((crypto: any) => crypto.crypto != id)
+        const cryptosFiltered = this.cryptos.filter((cryp: any) => cryp._id != crypto._id)
         this.cryptos = cryptosFiltered;
         this.getCryptosData();
       })
