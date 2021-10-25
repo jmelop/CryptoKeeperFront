@@ -19,29 +19,24 @@ export class CryptosComponent implements OnInit {
   moneySpend = 0;
   imgRoute = '../../../../assets/crypto-logos/';
 
-
   constructor(private cryptoServices: CryptosService, private cryptoDataService: CryptoDataService) { }
-
 
   ngOnInit(): void {
     this.cryptoServices.getAllCryptos().then(u => {
       this.cryptos = u;
       this.getCryptosData();
     });
-
     this.cryptoDataService.getAllCryptos().then(u => {
       this.cryptoData = u;
     });
-
     const avatar = window.document.getElementById('avatar');
-
     if (avatar !== null) {
       avatar.setAttribute('src', this.imgRoute + 'BTC' + '.png');
     }
   }
 
-  editState(crypto: any) {
-    this.cryptos.map((u: any) => {
+  editState(crypto: Crypto) {
+    this.cryptos.map((u: Crypto) => {
       u.editable = false
       crypto.editable = true;
     })
@@ -62,26 +57,23 @@ export class CryptosComponent implements OnInit {
     this.cryptoServices.getCrypto(this.findCrypto);
   };
 
-
-  updateCrypto(crypto: any) {
+  updateCrypto(crypto: Crypto) {
     crypto.editable = false;
-    this.cryptoServices.updateCrypto(crypto._id, crypto);
+    this.cryptoServices.updateCrypto(crypto._id!, crypto);
   };
 
-  deleteCrypto(crypto: any) {
-    this.cryptoServices.deleteCrypto(crypto._id)
+  deleteCrypto(crypto: Crypto) {
+    this.cryptoServices.deleteCrypto(crypto._id!)
       .then(() => {
-        const cryptosFiltered = this.cryptos.filter((cryp: any) => cryp._id != crypto._id)
+        const cryptosFiltered = this.cryptos.filter((cryp: Crypto) => cryp._id != crypto._id)
         this.cryptos = cryptosFiltered;
         this.getCryptosData();
       })
   };
 
-
   getCryptosData() {
     let uniqueCryptos: String[] = [];
     let count: number = 0;
-
     this.cryptos.map(crypto => {
       const exist = uniqueCryptos.find(unique => unique === crypto.crypto);
       count += Number(crypto.price);
@@ -90,17 +82,14 @@ export class CryptosComponent implements OnInit {
         uniqueCryptos.push(crypto.crypto);
       }
     });
-
     this.moneySpend = count;
     this.numberCryptos = uniqueCryptos.length;
   }
 
   onChangeCrypto(crypto: string) {
     const avatar = window.document.getElementById('avatar');
-
     if (avatar !== null) {
       avatar.setAttribute('src', this.imgRoute + crypto + '.png');
     }
   }
-
 }

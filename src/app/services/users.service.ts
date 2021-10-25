@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/user.model';
 import axios from 'axios';
 
 @Injectable({
@@ -8,7 +7,6 @@ import axios from 'axios';
 export class UsersService {
 
   apiUrl = "http://localhost:4000/users/";
-
 
   constructor() { }
 

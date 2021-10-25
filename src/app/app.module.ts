@@ -19,8 +19,6 @@ import { TermsOfUseComponent } from './components/home/terms-of-use/terms-of-use
 import { RulesComponent } from './components/home/rules/rules.component';
 import { CommunityComponent } from './components/home/community/community.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,4 +1,3 @@
-import { rendererTypeName } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { Crypto } from '../models/crypto.model';
@@ -17,28 +16,23 @@ export class CryptosService {
   }
 
   post(crypto: Crypto) {
-    return axios.post(this.apiUrl, crypto)
-      .then(res => {
-        return res.data;
-      }).catch((err) => { throw err })
+    return axios.post(this.apiUrl, crypto).then(res => {
+      return res.data;
+    }).catch((err) => { throw err })
   }
 
-
   getCrypto(id: string): Promise<Crypto> {
-
-    return axios.get(this.apiUrl + id)
-      .then(rest => rest.data).then(m => {
-
-        return {
-          crypto: m.crypto,
-          amount: m.amount,
-          price: m.price,
-          website: m.website,
-          date: m.date,
-          operation: m.operation,
-          description: m.description
-        }
-      })
+    return axios.get(this.apiUrl + id).then(rest => rest.data).then(m => {
+      return {
+        crypto: m.crypto,
+        amount: m.amount,
+        price: m.price,
+        website: m.website,
+        date: m.date,
+        operation: m.operation,
+        description: m.description
+      }
+    })
   }
 
   updateCrypto(id: string, crypto: Crypto): Promise<Crypto> {
@@ -46,15 +40,9 @@ export class CryptosService {
   }
 
   deleteCrypto(id: string) {
-    return axios.delete(this.apiUrl + id)
-      .then(res => {
-        res.data;
-        return 'OK';
-      })
+    return axios.delete(this.apiUrl + id).then(res => {
+      res.data;
+      return 'OK';
+    })
   }
-
-
 }
-
-
-

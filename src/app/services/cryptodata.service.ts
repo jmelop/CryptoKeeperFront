@@ -11,19 +11,16 @@ export class CryptoDataService {
   constructor() { }
 
   getAllCryptos(): Promise<CryptoData[]> {
-    return axios.get(this.apiUrl)
-      .then(rest => rest.data);
+    return axios.get(this.apiUrl).then(rest =>rest.data);
   }
 
   getCrypto(name: string): Promise<CryptoData> {
-    return axios.get(this.apiUrl + name)
-      .then(rest => rest.data).then(crypto => {
-
+    return axios.get(this.apiUrl + name).then(rest =>
+      rest.data).then(crypto => {
         return {
           name: crypto.name,
           shortname: crypto.shortname
         }
       });
   }
-
 }

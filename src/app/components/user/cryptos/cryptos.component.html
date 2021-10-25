@@ -16,8 +16,7 @@
                         <div class="flex items-center py-6">
                             <div class="w-12 h-12 mr-4 flex-none rounded-full border overflow-hidden">
                                 <img class="w-10.2 h-10.2 mr-6 object-cover" id="avatar"
-                                    src="../../../../assets/crypto-logos/"
-                                    alt="Avatar Upload">
+                                    src="../../../../assets/crypto-logos/" alt="Avatar Upload">
                             </div>
                             <label class="cursor-pointer ">
                                 <span
@@ -33,7 +32,8 @@
                                 class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full "
                                 required="required">
                                 <option value="">Select crypto</option>
-                                <option *ngFor="let crypto of cryptoData" [value]="crypto.shortname">{{crypto.shortname}}</option>
+                                <option *ngFor="let crypto of cryptoData" [value]="crypto.shortname">
+                                    {{crypto.shortname}}</option>
                             </select>
                             <p class="text-sm text-red-500 hidden mt-3" id="error">Please fill out this field.</p>
                         </div>
@@ -100,12 +100,9 @@
                             placeholder="Enter your transaction info" spellcheck="false"></textarea>
                         <p class="text-xs text-gray-400 text-left my-3">You inserted 0 characters</p>
                     </div>
-
-
                     <p class="text-xs text-red-500 text-right my-3">Required fields are marked with an
                         asterisk <abbr title="Required field">*</abbr></p>
                     <div class="mt-5 text-right md:space-x-3 md:block flex flex-col-reverse">
-
                         <button (click)="addCrypto()"
                             class="mb-2 md:mb-0 bg-green-400 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-green-500 ">Save</button>
                     </div>
@@ -114,11 +111,8 @@
         </div>
     </div>
 </div>
-
 <!-- Stadistics section -->
-
 <div class="flex flex-col flex-1 w-full" id="section2">
-
     <div class="grid grid-cols-12 gap-6 mt-5">
         <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
             href="#">
@@ -137,7 +131,6 @@
                 <div class="ml-2 w-full flex-1">
                     <div>
                         <div class="mt-3 text-3xl font-bold leading-8">{{numberCryptos}}</div>
-
                         <div class="mt-1 text-base text-gray-600">Number of cryptos</div>
                     </div>
                 </div>
@@ -152,8 +145,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-
-
                     <div
                         class="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
                         <span class="flex items-center">-25%</span>
@@ -167,7 +158,6 @@
                     </div>
                 </div>
             </div>
-
         </a>
         <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
             href="#">
@@ -178,7 +168,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-
                     <div
                         class="bg-yellow-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
                         <span class="flex items-center">30%</span>
@@ -187,7 +176,6 @@
                 <div class="ml-2 w-full flex-1">
                     <div>
                         <div class="mt-3 text-3xl font-bold leading-8">$4.510</div>
-
                         <div class="mt-1 text-base text-gray-600">Monthly profit</div>
                     </div>
                 </div>
@@ -210,17 +198,13 @@
                 <div class="ml-2 w-full flex-1">
                     <div>
                         <div class="mt-3 text-3xl font-bold leading-8">$510</div>
-
                         <div class="mt-1 text-base text-gray-600">Daily profit</div>
                     </div>
-
                 </div>
             </div>
         </a>
     </div>
 </div>
-
-
 <!-- Crypto List -->
 <div class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 " id="section3">
@@ -269,7 +253,8 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">
                                     <p *ngIf="!crypto.editable">{{crypto.amount}}</p>
-                                    <input class="border border-grey-lighter rounded-lg p-2" type="number" *ngIf="crypto.editable" [(ngModel)]="crypto.amount" />
+                                    <input class="border border-grey-lighter rounded-lg p-2" type="number"
+                                        *ngIf="crypto.editable" [(ngModel)]="crypto.amount" />
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
@@ -280,25 +265,24 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 <p *ngIf="!crypto.editable">{{crypto.price}}$</p>
-                                <input class="border border-grey-lighter rounded-lg p-2" type="number" *ngIf="crypto.editable" [(ngModel)]="crypto.price" />
+                                <input class="border border-grey-lighter rounded-lg p-2" type="number"
+                                    *ngIf="crypto.editable" [(ngModel)]="crypto.price" />
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 <p *ngIf="!crypto.editable">{{crypto.date | date: 'dd/MM/yyyy'}}</p>
-                                <input class="border border-grey-lighter rounded-lg p-2" type="string" *ngIf="crypto.editable" [(ngModel)]="crypto.date" />
+                                <input class="border border-grey-lighter rounded-lg p-2" type="string"
+                                    *ngIf="crypto.editable" [(ngModel)]="crypto.date" />
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <a *ngIf="!crypto.editable" (click)="editState(crypto)"
                                     class="text-indigo-600 hover:text-indigo-900 cursor-pointer"> Edit</a>
-                                    
                                 <a *ngIf="!crypto.editable">/</a>
-
                                 <a *ngIf="!crypto.editable" (click)="deleteCrypto(crypto)"
                                     class="text-indigo-600 hover:text-indigo-900 cursor-pointer">Delete </a>
                                 <a *ngIf="crypto.editable" (click)="updateCrypto(crypto)"
                                     class="text-indigo-600 hover:text-indigo-900 cursor-pointer">OK </a>
                             </td>
                         </tr>
-
                         <!-- More people... -->
                     </tbody>
                 </table>
