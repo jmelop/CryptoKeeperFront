@@ -6,7 +6,7 @@ import axios from 'axios';
 })
 export class UsersService {
 
-  apiUrl = "http://localhost:4000/users/";
+  apiUrl = 'http://localhost:4000/users/';
 
   constructor() { }
 
@@ -14,6 +14,6 @@ export class UsersService {
     return axios.get(this.apiUrl + id)
     .then(res => {
       return 'OK';
-    })
+    });
   }
 }

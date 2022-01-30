@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { CookieService } from 'ngx-cookie-service'
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -18,18 +18,18 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.cookieService.get('token_access')) {
-      this.router.navigateByUrl('/cryptos')
+      this.router.navigateByUrl('/cryptos');
     }
   }
 
   login() {
     this.authService.login(this.newLogin).then(res => {
       if (res) {
-        const token = res.token
-        this.cookieService.set('token_access', token, 4, '/')
-        this.router.navigateByUrl('/cryptos')
+        const token = res.token;
+        this.cookieService.set('token_access', token, 4, '/');
+        this.router.navigateByUrl('/cryptos');
       }
-    })
+    });
   }
 
 }

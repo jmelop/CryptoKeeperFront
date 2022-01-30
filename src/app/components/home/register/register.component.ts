@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  newUser: User = { name: '', email: '', password: '', role: 'user' }
+  newUser: User = { name: '', email: '', password: '', role: 'user' };
 
 
   ngOnInit(): void {
@@ -21,8 +21,8 @@ export class RegisterComponent implements OnInit {
   saveUser() {
     this.authService.register(this.newUser).then(u => {
       if (u === 'OK') {
-        this.router.navigateByUrl('/login')
+        this.router.navigateByUrl('/login');
       }
-    })
+    });
   }
 }

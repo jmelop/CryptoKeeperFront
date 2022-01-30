@@ -6,19 +6,19 @@ import { Crypto } from '../models/crypto.model';
   providedIn: 'root'
 })
 export class CryptosService {
-  apiUrl = "http://localhost:4000/cryptos/";
+  apiUrl = 'http://localhost:4000/cryptos/';
 
   constructor() { }
 
   getAllCryptos(): Promise<Crypto[]> {
     return axios.get(this.apiUrl + '?limit=10&offset=20')
-      .then(rest => rest.data)
+      .then(rest => rest.data);
   }
 
   post(crypto: Crypto) {
     return axios.post(this.apiUrl, crypto).then(res => {
       return res.data;
-    }).catch((err) => { throw err })
+    }).catch((err) => { throw err });
   }
 
   getCrypto(id: string): Promise<Crypto> {
@@ -31,18 +31,17 @@ export class CryptosService {
         date: m.date,
         operation: m.operation,
         description: m.description
-      }
-    })
+      };
+    });
   }
 
   updateCrypto(id: string, crypto: Crypto): Promise<Crypto> {
-    return axios.patch(this.apiUrl + id, crypto)
+    return axios.patch(this.apiUrl + id, crypto);
   }
 
   deleteCrypto(id: string) {
-    return axios.delete(this.apiUrl + id).then(res => {
-      res.data;
+    return axios.delete(this.apiUrl + id).then(() => {
       return 'OK';
-    })
-  }
+    });
+  };
 }

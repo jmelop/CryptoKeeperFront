@@ -37,9 +37,9 @@ export class CryptosComponent implements OnInit {
 
   editState(crypto: Crypto) {
     this.cryptos.map((u: Crypto) => {
-      u.editable = false
+      u.editable = false;
       crypto.editable = true;
-    })
+    });
   }
 
   addCrypto() {
@@ -50,29 +50,29 @@ export class CryptosComponent implements OnInit {
           this.newCrypto = { crypto: '', amount: 0, price: 0, website: '', date: '', operation: '', description: '' };
           this.getCryptosData();
         }
-      })
-  };
+      });
+  }
 
   getCrypto() {
     this.cryptoServices.getCrypto(this.findCrypto);
-  };
+  }
 
   updateCrypto(crypto: Crypto) {
     crypto.editable = false;
     this.cryptoServices.updateCrypto(crypto._id!, crypto);
-  };
+  }
 
   deleteCrypto(crypto: Crypto) {
     this.cryptoServices.deleteCrypto(crypto._id!)
       .then(() => {
-        const cryptosFiltered = this.cryptos.filter((cryp: Crypto) => cryp._id != crypto._id)
+        const cryptosFiltered = this.cryptos.filter((cryp: Crypto) => cryp._id !== crypto._id);
         this.cryptos = cryptosFiltered;
         this.getCryptosData();
-      })
-  };
+      });
+  }
 
   getCryptosData() {
-    let uniqueCryptos: String[] = [];
+    const uniqueCryptos: string[] = [];
     let count: number = 0;
     this.cryptos.map(crypto => {
       const exist = uniqueCryptos.find(unique => unique === crypto.crypto);

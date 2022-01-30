@@ -16,8 +16,8 @@ export class ReportsComponent implements OnInit {
   cryptos: any[] = [];
   cryptoObj: CryptoReport = { crypto: '', price: 0, date: '' };
   cryptoData: CryptoReport[] = [];
-  monthNames = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"];
+  monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
   lastNumberMonths: number[] = [];
   lastStringMonths: string[] = [];
   cryptoProfits: CryptoReport[] = [];
@@ -30,7 +30,7 @@ export class ReportsComponent implements OnInit {
   };
 
   // Doughnut
-  public doughnutChartLabels: Label[] = []
+  public doughnutChartLabels: Label[] = [];
   public doughnutChartData: number[] = [];
   public doughnutChartType: ChartType = 'doughnut';
 
@@ -52,7 +52,7 @@ export class ReportsComponent implements OnInit {
       this.getCryptoDataChart();
       this.doughnutChartLabels = this.cryptoData.map(crypto => crypto.crypto);
       this.doughnutChartData = this.cryptoData.map(crypto => Number(crypto.price));
-    })
+    });
   }
 
   getCryptosData() {
@@ -60,10 +60,10 @@ export class ReportsComponent implements OnInit {
       const exist = this.cryptoData.find(data => data.crypto === crypto.crypto);
       if (exist) {
         this.cryptoData.map(data => {
-          if (data.crypto == crypto.crypto) {
+          if (data.crypto === crypto.crypto) {
             data.price += Number(crypto.price);
           }
-        })
+        });
       } else {
         this.cryptoObj.crypto = crypto.crypto;
         this.cryptoObj.price = Number(crypto.price);
@@ -71,11 +71,11 @@ export class ReportsComponent implements OnInit {
         this.cryptoObj = { crypto: '', price: 0, date: '' };
       }
     });
-  };
+  }
 
   getCryptoDataChart() {
     this.cryptos.map(crypto => {
-      let cryptoDate = new Date(crypto.date).getMonth();
+      const cryptoDate = new Date(crypto.date).getMonth();
       const dateMatch = this.lastNumberMonths.find(date => date === cryptoDate);
       const exist = this.cryptoProfits.find(data => data.crypto === crypto.crypto && new Date(data.date).getMonth() === cryptoDate);
 
@@ -84,7 +84,7 @@ export class ReportsComponent implements OnInit {
           if (data.crypto === crypto.crypto) {
             data.price += Number(crypto.price);
           }
-        })
+        });
       } else if (dateMatch) {
         this.cryptoObj.crypto = crypto.crypto;
         this.cryptoObj.price = Number(crypto.price);
@@ -92,16 +92,16 @@ export class ReportsComponent implements OnInit {
         this.cryptoProfits.push(this.cryptoObj);
         const existLabel = this.cryptoLabel.find(data => data === crypto.crypto);
         if (!existLabel && this.cryptoLabel.length <= 2) {
-          this.cryptoLabel.push(crypto.crypto)
+          this.cryptoLabel.push(crypto.crypto);
         }
         this.cryptoObj = { crypto: '', price: 0, date: '' };
       }
     });
     this.chartData = [];
-    for (var i = 0; i <= 2; i++) {
-      let arr: number[] = [];
+    for (let i = 0; i <= 2; i++) {
+      const arr: number[] = [];
       this.cryptoProfits.map(crypto => {
-        let cryptoDate = new Date(crypto.date).getMonth();
+        const cryptoDate = new Date(crypto.date).getMonth();
         if (crypto.crypto === this.cryptoLabel[i]) {
           this.lastNumberMonths.map(month => {
             if (month === cryptoDate && arr.length <= 3) {
@@ -109,12 +109,12 @@ export class ReportsComponent implements OnInit {
             } else if (arr.length <= 3) {
               arr.push(0);
             } else {
-              const index = this.lastNumberMonths.indexOf(cryptoDate)
+              const index = this.lastNumberMonths.indexOf(cryptoDate);
               arr[index] = crypto.price;
             }
-          })
+          });
         }
-      })
+      });
       this.cryptoGraphData.data = arr;
       this.cryptoGraphData.label = this.cryptoLabel[i];
       this.chartData.push(this.cryptoGraphData);
@@ -123,8 +123,8 @@ export class ReportsComponent implements OnInit {
   }
 
   getDate() {
-    let TodayDate = new Date();
-    let actualMonth = TodayDate.getMonth() + 1;
+    const TodayDate = new Date();
+    const actualMonth = TodayDate.getMonth() + 1;
     for (let i = 0; i <= 3; i++) {
       this.lastNumberMonths.push(actualMonth - i);
       this.lastStringMonths.push(this.monthNames[actualMonth - i]);

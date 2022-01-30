@@ -6,12 +6,12 @@ import { CryptoData } from '../models/crypto-data.model';
   providedIn: 'root'
 })
 export class CryptoDataService {
-  apiUrl = "http://localhost:4000/cryptodata/";
+  apiUrl = 'http://localhost:4000/cryptodata/';
 
   constructor() { }
 
   getAllCryptos(): Promise<CryptoData[]> {
-    return axios.get(this.apiUrl).then(rest =>rest.data);
+    return axios.get(this.apiUrl).then(rest => rest.data);
   }
 
   getCrypto(name: string): Promise<CryptoData> {
@@ -20,7 +20,7 @@ export class CryptoDataService {
         return {
           name: crypto.name,
           shortname: crypto.shortname
-        }
+        };
       });
   }
 }
