@@ -14,18 +14,18 @@ import { GraphData } from 'src/app/models/graph-data.model';
 
 export class ReportsComponent implements OnInit {
   cryptos: any[] = [];
-  cryptoObj: CryptoReport = { crypto: '', price: 0, date: '' };
+  newCrypto: CryptoReport = new CryptoReport();
   cryptoData: CryptoReport[] = [];
   monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'];
   lastNumberMonths: number[] = [];
   lastStringMonths: string[] = [];
-  cryptoProfits: CryptoReport[] = [];
-  cryptoLabel: string[] = [];
-  cryptoGraphData: GraphData = { data: [], label: '' };
-  chartData: GraphData[] = [];
-  chartLabels = this.lastStringMonths;
-  chartOptions = {
+  profits: CryptoReport[] = [];
+  profitsChartLabel: string[] = [];
+  tempProfitData: GraphData = new GraphData();
+  profitChartData: GraphData[] = [];
+  profitChartLabels = this.lastStringMonths;
+  profitChartOptions = {
     responsive: true
   };
 
@@ -35,7 +35,6 @@ export class ReportsComponent implements OnInit {
   public doughnutChartType: ChartType = 'doughnut';
 
   // Radar
-
   public pieChartColors: Array<any> = [{
     backgroundColor: ['rgb(255, 205, 86)',
       'rgb(255, 99, 132)',
@@ -51,7 +50,7 @@ export class ReportsComponent implements OnInit {
       this.getCryptosData();
       this.getCryptoDataChart();
       this.doughnutChartLabels = this.cryptoData.map(crypto => crypto.crypto);
-      this.doughnutChartData = this.cryptoData.map(crypto => Number(crypto.price));
+      this.doughnutChartData = this.cryptoData.map(crypto => crypto.price);
     });
   }
 
@@ -61,14 +60,14 @@ export class ReportsComponent implements OnInit {
       if (exist) {
         this.cryptoData.map(data => {
           if (data.crypto === crypto.crypto) {
-            data.price += Number(crypto.price);
+            data.price += crypto.price;
           }
         });
       } else {
-        this.cryptoObj.crypto = crypto.crypto;
-        this.cryptoObj.price = Number(crypto.price);
-        this.cryptoData.push(this.cryptoObj);
-        this.cryptoObj = { crypto: '', price: 0, date: '' };
+        this.newCrypto.crypto = crypto.crypto;
+        this.newCrypto.price = crypto.price;
+        this.cryptoData.push(this.newCrypto);
+        this.newCrypto = { crypto: '', price: 0, date: '' };
       }
     });
   }
@@ -77,35 +76,38 @@ export class ReportsComponent implements OnInit {
     this.cryptos.map(crypto => {
       const cryptoDate = new Date(crypto.date).getMonth();
       const dateMatch = this.lastNumberMonths.find(date => date === cryptoDate);
-      const exist = this.cryptoProfits.find(data => data.crypto === crypto.crypto && new Date(data.date).getMonth() === cryptoDate);
-
+      const exist = this.profits.find(data => data.crypto === crypto.crypto && new Date(data.date).getMonth() === cryptoDate);
       if (exist && dateMatch) {
-        this.cryptoProfits.map(data => {
+        this.profits.map(data => {
           if (data.crypto === crypto.crypto) {
-            data.price += Number(crypto.price);
+            data.price += crypto.price;
           }
         });
       } else if (dateMatch) {
-        this.cryptoObj.crypto = crypto.crypto;
-        this.cryptoObj.price = Number(crypto.price);
-        this.cryptoObj.date = crypto.date;
-        this.cryptoProfits.push(this.cryptoObj);
-        const existLabel = this.cryptoLabel.find(data => data === crypto.crypto);
-        if (!existLabel && this.cryptoLabel.length <= 2) {
-          this.cryptoLabel.push(crypto.crypto);
+        this.newCrypto.crypto = crypto.crypto;
+        this.newCrypto.price = crypto.price;
+        this.newCrypto.date = crypto.date;
+        this.profits.push(this.newCrypto);
+        const existLabel = this.profitsChartLabel.find(data => data === crypto.crypto);
+        if (!existLabel && this.profitsChartLabel.length <= 2) {
+          this.profitsChartLabel.push(crypto.crypto);
         }
-        this.cryptoObj = { crypto: '', price: 0, date: '' };
+        this.newCrypto = { crypto: '', price: 0, date: '' };
       }
     });
-    this.chartData = [];
+    this.getProfit();
+  }
+
+  getProfit() {
+    this.profitChartData = [];
     for (let i = 0; i <= 2; i++) {
       const arr: number[] = [];
-      this.cryptoProfits.map(crypto => {
+      this.profits.map(crypto => {
         const cryptoDate = new Date(crypto.date).getMonth();
-        if (crypto.crypto === this.cryptoLabel[i]) {
+        if (crypto.crypto === this.profitsChartLabel[i]) {
           this.lastNumberMonths.map(month => {
             if (month === cryptoDate && arr.length <= 3) {
-              arr.push(Number(crypto.price));
+              arr.push(crypto.price);
             } else if (arr.length <= 3) {
               arr.push(0);
             } else {
@@ -115,10 +117,10 @@ export class ReportsComponent implements OnInit {
           });
         }
       });
-      this.cryptoGraphData.data = arr;
-      this.cryptoGraphData.label = this.cryptoLabel[i];
-      this.chartData.push(this.cryptoGraphData);
-      this.cryptoGraphData = { data: [], label: '' };
+      this.tempProfitData.data = arr;
+      this.tempProfitData.label = this.profitsChartLabel[i];
+      this.profitChartData.push(this.tempProfitData);
+      this.tempProfitData = { data: [], label: '' };
     }
   }
 

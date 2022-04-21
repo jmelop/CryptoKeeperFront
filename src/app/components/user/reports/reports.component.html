@@ -16,17 +16,19 @@
             <h2 class="text-base text-white font-light inline rounded px-4 py-2 tracking-wide uppercase bg-gray-900">
                 Profit
             </h2>
-            <canvas baseChart [chartType]="'line'" [legend]="true" [datasets]="chartData" [labels]="chartLabels"
-                [options]="chartOptions">
+            <canvas *ngIf="cryptoData.length > 0" baseChart [chartType]="'line'" [legend]="true" [datasets]="profitChartData" [labels]="profitChartLabels"
+                [options]="profitChartOptions">
             </canvas>
+            <p class="my-8 text-center" *ngIf="cryptoData.length == 0">No data</p>
         </div>
         <div class="py-4 px-8 bg-white shadow-lg rounded-lg">
             <h2 class="text-base text-white font-light inline rounded px-4 py-2 tracking-wide uppercase bg-gray-900">
                 Money spent
             </h2>
-            <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"
+            <canvas *ngIf="cryptoData.length > 0" baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"
                 [colors]="pieChartColors">
             </canvas>
+            <p class="my-8 text-center" *ngIf="cryptoData.length == 0">No data</p>
         </div>
     </div>
 </div>
