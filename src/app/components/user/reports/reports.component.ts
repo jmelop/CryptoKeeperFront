@@ -5,7 +5,6 @@ import { CryptosService } from 'src/app/services/cryptos.service';
 import { CryptoReport } from 'src/app/models/crypto-report.model';
 import { GraphData } from 'src/app/models/graph-data.model';
 
-
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
@@ -67,7 +66,7 @@ export class ReportsComponent implements OnInit {
         this.newCrypto.crypto = crypto.crypto;
         this.newCrypto.price = crypto.price;
         this.cryptoData.push(this.newCrypto);
-        this.newCrypto = { crypto: '', price: 0, date: '' };
+        this.newCrypto = new CryptoReport();
       }
     });
   }
@@ -92,7 +91,7 @@ export class ReportsComponent implements OnInit {
         if (!existLabel && this.profitsChartLabel.length <= 2) {
           this.profitsChartLabel.push(crypto.crypto);
         }
-        this.newCrypto = { crypto: '', price: 0, date: '' };
+        this.newCrypto = new CryptoReport();
       }
     });
     this.getProfit();
@@ -121,6 +120,11 @@ export class ReportsComponent implements OnInit {
       this.tempProfitData.label = this.profitsChartLabel[i];
       this.profitChartData.push(this.tempProfitData);
       this.tempProfitData = { data: [], label: '' };
+      if (this.profitsChartLabel.length < 3) {
+        for (let i = 0; i < (3 - this.profitsChartLabel.length); i++) {
+          this.profitsChartLabel.push("NO DATA");
+        }
+      }
     }
   }
 

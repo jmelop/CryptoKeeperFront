@@ -10,7 +10,6 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 90px;
-
 }
 
 #section3{
@@ -18,11 +17,19 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 90px;
+}
 
+.btn-selected {
+    background: rgba(17, 24, 39, var(--tw-bg-opacity));
+    color: white;
+}
+
+.btn-unselected {
+    background: rgba(255, 255, 255, var(--tw-bg-opacity));
+    color: black;
 }
 
 #menu-crypto{
     --tw-bg-opacity: 1;
     background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
 }
-

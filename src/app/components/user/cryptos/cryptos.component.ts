@@ -14,10 +14,12 @@ export class CryptosComponent implements OnInit {
   cryptos: Crypto[] = [];
   cryptoData: CryptoData[] = [];
   findCrypto: string = '';
-  newCrypto: Crypto = { crypto: '', amount: 0, price: 0, website: '', date: '', operation: '', description: '' };
+  newCrypto: Crypto = new Crypto();
+  newCryptoData: CryptoData = new CryptoData();
   numberCryptos = 0;
   moneySpend = 0;
   imgRoute = '../../../../assets/crypto-logos/';
+  newCoin: boolean = false;
 
   constructor(private cryptoServices: CryptosService, private cryptoDataService: CryptoDataService) { }
 
@@ -43,14 +45,25 @@ export class CryptosComponent implements OnInit {
   }
 
   addCrypto() {
-    this.cryptoServices.post(this.newCrypto)
-      .then(crypto => {
-        if (typeof crypto !== undefined) {
-          this.cryptos.push(crypto);
-          this.newCrypto = { crypto: '', amount: 0, price: 0, website: '', date: '', operation: '', description: '' };
-          this.getCryptosData();
-        }
-      });
+    if (!this.newCoin) {
+      this.cryptoServices.post(this.newCrypto)
+        .then(crypto => {
+          if (typeof crypto !== undefined) {
+            this.cryptos.push(crypto);
+            this.newCrypto = new Crypto();
+            this.getCryptosData();
+          }
+        });
+    } else {
+      this.cryptoDataService.post(this.newCryptoData)
+        .then(crypto => {
+          if (typeof crypto !== undefined) {
+            this.cryptoData.push(crypto);
+            this.newCryptoData = new CryptoData();
+            this.newCoin = false;
+          }
+        })
+    }
   }
 
   getCrypto() {

@@ -14,6 +14,12 @@ export class CryptoDataService {
     return axios.get(this.apiUrl).then(rest => rest.data);
   }
 
+  post(crypto: CryptoData) {
+    return axios.post(this.apiUrl, crypto).then(res => {
+      return res.data;
+    }).catch((err) => { throw err });
+  }
+
   getCrypto(name: string): Promise<CryptoData> {
     return axios.get(this.apiUrl + name).then(rest =>
       rest.data).then(crypto => {
