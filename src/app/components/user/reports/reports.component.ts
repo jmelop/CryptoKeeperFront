@@ -56,13 +56,13 @@ export class ReportsComponent implements OnInit {
   getCryptosData() {
     this.cryptos.map(crypto => {
       const exist = this.cryptoData.find(data => data.crypto === crypto.crypto);
-      if (exist) {
+      if (exist && crypto.operation == 'Buy') {
         this.cryptoData.map(data => {
           if (data.crypto === crypto.crypto) {
             data.price += crypto.price;
           }
         });
-      } else {
+      } else if (crypto.operation == 'Buy') {
         this.newCrypto.crypto = crypto.crypto;
         this.newCrypto.price = crypto.price;
         this.cryptoData.push(this.newCrypto);
@@ -76,13 +76,14 @@ export class ReportsComponent implements OnInit {
       const cryptoDate = new Date(crypto.date).getMonth();
       const dateMatch = this.lastNumberMonths.find(date => date === cryptoDate);
       const exist = this.profits.find(data => data.crypto === crypto.crypto && new Date(data.date).getMonth() === cryptoDate);
-      if (exist && dateMatch) {
+      console.log(crypto)
+      if (exist && dateMatch && crypto.operation == 'Buy') {
         this.profits.map(data => {
           if (data.crypto === crypto.crypto) {
             data.price += crypto.price;
           }
         });
-      } else if (dateMatch) {
+      } else if (dateMatch && crypto.operation == 'Buy') {
         this.newCrypto.crypto = crypto.crypto;
         this.newCrypto.price = crypto.price;
         this.newCrypto.date = crypto.date;

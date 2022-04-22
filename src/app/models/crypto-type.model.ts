@@ -1,4 +1,4 @@
-export class CryptoData {
+export class CryptoType {
     name: string;
     shortname: string;
 }

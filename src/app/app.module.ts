@@ -17,6 +17,8 @@ import { PrivacyPolicyComponent } from './components/home/privacy-policy/privacy
 import { TermsOfUseComponent } from './components/home/terms-of-use/terms-of-use.component';
 import { RulesComponent } from './components/home/rules/rules.component';
 import { CommunityComponent } from './components/home/community/community.component';
+import { FooterComponent } from './components/home/footer/footer.component';
+import { HomeNavbarComponent } from './components/home/home-navbar/home-navbar.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { CommunityComponent } from './components/home/community/community.compon
     PrivacyPolicyComponent,
     TermsOfUseComponent,
     RulesComponent,
-    CommunityComponent
+    CommunityComponent,
+    FooterComponent,
+    HomeNavbarComponent
   ],
   imports: [
     BrowserModule,

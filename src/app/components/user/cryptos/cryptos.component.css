@@ -1,24 +1,3 @@
-#section{
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    margin-bottom: 90px;
-}
-
-#section2{
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 90px;
-}
-
-#section3{
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 90px;
-}
-
 .btn-selected {
     background: rgba(17, 24, 39, var(--tw-bg-opacity));
     color: white;

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CryptosService } from '../../../services/cryptos.service';
 import { Crypto } from '../../../models/crypto.model';
-import { CryptoDataService } from 'src/app/services/cryptodata.service';
-import { CryptoData } from 'src/app/models/crypto-data.model';
+import { CryptoTypeService } from 'src/app/services/cryptotype.service';
+import { CryptoType } from 'src/app/models/crypto-type.model';
 
 @Component({
   selector: 'app-cryptos',
@@ -12,24 +12,25 @@ import { CryptoData } from 'src/app/models/crypto-data.model';
 export class CryptosComponent implements OnInit {
 
   cryptos: Crypto[] = [];
-  cryptoData: CryptoData[] = [];
+  cryptoTypes: CryptoType[] = [];
   findCrypto: string = '';
   newCrypto: Crypto = new Crypto();
-  newCryptoData: CryptoData = new CryptoData();
+  newCryptoType: CryptoType = new CryptoType();
   numberCryptos = 0;
   moneySpend = 0;
+  moneyReturned = 0;
   imgRoute = '../../../../assets/crypto-logos/';
   newCoin: boolean = false;
 
-  constructor(private cryptoServices: CryptosService, private cryptoDataService: CryptoDataService) { }
+  constructor(private cryptoServices: CryptosService, private cryptoTypeService: CryptoTypeService) { }
 
   ngOnInit(): void {
-    this.cryptoServices.getAllCryptos().then(u => {
-      this.cryptos = u;
+    this.cryptoServices.getAllCryptos().then(cryptos => {
+      this.cryptos = cryptos;
       this.getCryptosData();
     });
-    this.cryptoDataService.getAllCryptos().then(u => {
-      this.cryptoData = u;
+    this.cryptoTypeService.getAllCryptos().then(cryptoTypes => {
+      this.cryptoTypes = cryptoTypes;
     });
     const avatar = window.document.getElementById('avatar');
     if (avatar !== null) {
@@ -55,11 +56,11 @@ export class CryptosComponent implements OnInit {
           }
         });
     } else {
-      this.cryptoDataService.post(this.newCryptoData)
+      this.cryptoTypeService.post(this.newCryptoType)
         .then(crypto => {
           if (typeof crypto !== undefined) {
-            this.cryptoData.push(crypto);
-            this.newCryptoData = new CryptoData();
+            this.cryptoTypes.push(crypto);
+            this.newCryptoType = new CryptoType();
             this.newCoin = false;
           }
         })
@@ -86,16 +87,17 @@ export class CryptosComponent implements OnInit {
 
   getCryptosData() {
     const uniqueCryptos: string[] = [];
-    let count: number = 0;
     this.cryptos.map(crypto => {
       const exist = uniqueCryptos.find(unique => unique === crypto.crypto);
-      count += Number(crypto.price);
-
+      if (crypto.operation == 'Buy') {
+        this.moneySpend += crypto.price;
+      } else {
+        this.moneyReturned += crypto.price;
+      }
       if (!exist) {
         uniqueCryptos.push(crypto.crypto);
       }
     });
-    this.moneySpend = count;
     this.numberCryptos = uniqueCryptos.length;
   }
 
