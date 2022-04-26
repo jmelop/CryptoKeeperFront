@@ -52,6 +52,7 @@ export class CryptosComponent implements OnInit {
           if (typeof crypto !== undefined) {
             this.cryptos.push(crypto);
             this.newCrypto = new Crypto();
+            this.newCoin = true;
             this.getCryptosData();
           }
         });

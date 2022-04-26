@@ -7,22 +7,37 @@
                 Sign in to your account
             </h2>
         </div>
-        <form class="mt-8 space-y-6" action="#" method="POST">
+        <form #loginForm="ngForm" class="mt-8 space-y-6" action="#" method="POST">
             <input type="hidden" name="remember" value="true">
             <div class="rounded-md shadow-sm -space-y-px">
                 <div>
                     <label for="email-address" class="sr-only">Email address</label>
-                    <input [(ngModel)]="newLogin.email" id="email-address" name="email" type="email"
-                        autocomplete="email" required
-                        class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                        placeholder="Email address">
+                    <input [(ngModel)]="newLogin.email" id="email" name="email" type="email" #email="ngModel"
+                        autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 
+                        placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 
+                        focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
+                    <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                        <div *ngIf="email?.errors?.required">
+                            <p class="text-xs ml-1 my-1 text-red-500">The email is required</p>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <label for="password" class="sr-only">Password</label>
                     <input [(ngModel)]="newLogin.password" id="password" name="password" type="password"
-                        autocomplete="current-password" required
-                        class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                        placeholder="Password">
+                        autocomplete="current-password" required #password="ngModel" class="appearance-none rounded-none 
+                        relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 
+                        rounded-b-md focus:outline-none focus:ring-indigo-500 
+                        focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
+                    <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+                        <div *ngIf="password?.errors?.required">
+                            <p class="text-xs ml-1 my-1 text-red-500">The password is required</p>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="loginError">
+                    <p class="text-xs ml-1 my-1 text-red-500">* The entered password is not correct or the email address
+                        does not exist.</p>
                 </div>
             </div>
             <div class="flex items-center justify-between">
@@ -40,8 +55,10 @@
                 </div>
             </div>
             <div>
-                <a type="submit" (click)="login()"
-                    class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                <button type="submit" (click)="login()" [disabled]="!loginForm.form.valid"
+                    class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium 
+                    rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 
+                    focus:ring-offset-2 focus:ring-indigo-500"
                     style="cursor:pointer">
                     <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                         <!-- Heroicon name: solid/lock-closed -->
@@ -54,11 +71,13 @@
                         </svg>
                     </span>
                     Sign in
-                </a>
+                </button>
             </div>
             <div>
                 <a type="submit" href="/register"
-                    class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm 
+                    font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 
+                    focus:ring-offset-2 focus:ring-indigo-500">
                     <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                         <!-- Heroicon name: solid/lock-closed -->
                         <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"

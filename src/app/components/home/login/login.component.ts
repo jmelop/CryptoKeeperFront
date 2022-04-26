@@ -4,7 +4,6 @@ import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private cookieService: CookieService) { }
 
-  newLogin: User = { name: '', email: '', password: '', role: '' };
+  newLogin: User = new User();
+  loginError: boolean = false;
 
   ngOnInit(): void {
     if (this.cookieService.get('token_access')) {
@@ -23,13 +23,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.newLogin).then(res => {
-      if (res) {
-        const token = res.token;
+    this.authService.login(this.newLogin).subscribe(param => {
+      if (param) {
+        const token = param.token;
         this.cookieService.set('token_access', token, 4, '/');
         this.router.navigateByUrl('/cryptos');
       }
-    });
+    }, () => {
+      this.loginError = true;
+    })
   }
 
 }

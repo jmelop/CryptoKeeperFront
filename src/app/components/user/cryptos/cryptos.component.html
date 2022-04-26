@@ -33,6 +33,7 @@
                                 <div class="flex items-center py-6">
                                     <div class="w-12 h-12 mr-4 flex-none rounded-full border overflow-hidden">
                                         <img class="w-10.2 h-10.2 mr-6 object-cover" id="avatar"
+                                            onerror="this.src='../../../../assets/crypto-logos/BTC.png'"
                                             src="../../../../assets/crypto-logos/" alt="Avatar Upload">
                                     </div>
                                     <label class="cursor-pointer ">
@@ -42,113 +43,169 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="md:flex md:flex-row md:space-x-4 w-full text-xs">
-                                <div *ngIf="newCoin" class="mb-3 md:space-y-2 w-full text-xs">
-                                    <label class="font-semibold text-gray-600 py-2">Name <abbr
-                                            title="required">*</abbr></label>
-                                    <input placeholder="Bitcoin" [(ngModel)]="newCryptoType.name"
-                                        class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
-                                        required="required" type="text">
-                                    <p class="text-red text-xs hidden">Please fill out this field.</p>
+                            <form #newCoinForm="ngForm" action="#" method="POST">
+                                <div class="md:flex md:flex-row md:space-x-4 w-full text-xs">
+                                    <div *ngIf="newCoin" class="mb-3 md:space-y-2 w-full text-xs">
+                                        <label class="font-semibold text-gray-600 py-2">Name <abbr
+                                                title="required">*</abbr></label>
+                                        <input placeholder="Bitcoin" [(ngModel)]="newCryptoType.name" id="name"
+                                            name="name" type="name" #name="ngModel"
+                                            class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                                            required="required" type="text">
+                                        <div class="alert alert-danger"
+                                            *ngIf="name.invalid && (name.dirty || name.touched)">
+                                            <div *ngIf="name?.errors?.required">
+                                                <p class="text-xs ml-1 my-1 text-red-500">The name is required</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="newCoin" class="mb-3 md:space-y-2 w-full text-xs">
+                                        <label class="font-semibold text-gray-600 py-2">Shortname<abbr
+                                                title="required">*</abbr></label>
+                                        <input placeholder="BTC" [(ngModel)]="newCryptoType.shortname" id="shortname"
+                                            name="shortname" type="shortname" #shortname="ngModel"
+                                            class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                                            required="required" type="text">
+                                        <div class="alert alert-danger"
+                                            *ngIf="shortname.invalid && (shortname.dirty || shortname.touched)">
+                                            <div *ngIf="shortname?.errors?.required">
+                                                <p class="text-xs ml-1 my-1 text-red-500">The shortname is required</p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-5 text-right md:space-x-3 md:block flex flex-col-reverse">
+                                            <p class="text-xs text-red-500 text-right my-3">Required fields are marked
+                                                with an asterisk
+                                                <abbr title="Required field">*</abbr>
+                                            </p>
+                                            <button (click)="addCrypto()" [disabled]="!newCoinForm.form.valid" class="mb-2 md:mb-0 bg-green-400 
+                                            px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg 
+                                            hover:bg-green-500">Save</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div *ngIf="newCoin" class="mb-3 md:space-y-2 w-full text-xs">
-                                    <label class="font-semibold text-gray-600 py-2">shortname<abbr
-                                            title="required">*</abbr></label>
-                                    <input placeholder="BTC" [(ngModel)]="newCryptoType.shortname"
-                                        class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
-                                        required="required" type="text">
-                                    <p class="text-red text-xs hidden">Please fill out this field.</p>
+                            </form>
+                            <form #cryptoForm="ngForm" action="#" method="POST">
+                                <div class="md:flex md:flex-row md:space-x-4 w-full text-xs">
+                                    <div *ngIf="!newCoin" class="mb-3 md:space-y-2 w-full text-xs">
+                                        <label class="font-semibold text-gray-600 py-2">Crypto<abbr
+                                                title="required">*</abbr></label>
+                                        <select [(ngModel)]="newCrypto.crypto"
+                                            (change)="onChangeCrypto(newCrypto.crypto)" id="crypto" name="crypto"
+                                            type="crypto" #crypto="ngModel" class="block w-full bg-grey-lighter text-grey-darker border 
+                                            border-grey-lighter rounded-lg h-10 px-4 md:w-full" required="required">
+                                            <option value="">Select crypto</option>
+                                            <option *ngFor="let crypto of cryptoTypes" [value]="crypto.shortname">
+                                                {{crypto.shortname}}</option>
+                                        </select>
+                                        <div class="alert alert-danger"
+                                            *ngIf="crypto.invalid && (crypto.dirty || crypto.touched)">
+                                            <div *ngIf="crypto?.errors?.required">
+                                                <p class="text-xs ml-1 my-1 text-red-500">The crypto is required</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="!newCoin" class="mb-3 md:space-y-2 w-full text-xs">
+                                        <label class="font-semibold text-gray-600 py-2">Amount <abbr
+                                                title="required">*</abbr></label>
+                                        <input placeholder="Amount" [(ngModel)]="newCrypto.amount" id="amount"
+                                            name="amount" type="amount" #amount="ngModel"
+                                            class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                                            required="required" type="number">
+                                        <div class="alert alert-danger"
+                                            *ngIf="amount.invalid && (amount.dirty || amount.touched)">
+                                            <div *ngIf="amount?.errors?.required">
+                                                <p class="text-xs ml-1 my-1 text-red-500">The amount is required</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="!newCoin" class="mb-3 md:space-y-2 w-full text-xs">
+                                        <label class="font-semibold text-gray-600 py-2">Money spent <abbr
+                                                title="required">*</abbr></label>
+                                        <input placeholder="Price bought" [(ngModel)]="newCrypto.price" id="price"
+                                            name="price" type="price" #price="ngModel"
+                                            class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                                            required="required" type="text">
+                                        <div class="alert alert-danger"
+                                            *ngIf="price.invalid && (price.dirty || price.touched)">
+                                            <div *ngIf="price?.errors?.required">
+                                                <p class="text-xs ml-1 my-1 text-red-500">The price is required</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div *ngIf="!newCoin" class="mb-3 md:space-y-2 w-full text-xs">
-                                    <label class="font-semibold text-gray-600 py-2">Crypto<abbr
-                                            title="required">*</abbr></label>
-                                    <select [(ngModel)]="newCrypto.crypto" (change)="onChangeCrypto(newCrypto.crypto)"
-                                        class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full "
-                                        required="required">
-                                        <option value="">Select crypto</option>
-                                        <option *ngFor="let crypto of cryptoTypes" [value]="crypto.shortname">
-                                            {{crypto.shortname}}</option>
-                                    </select>
-                                    <p class="text-sm text-red-500 hidden mt-3" id="error">Please fill out this field.
-                                    </p>
-                                </div>
-                                <div *ngIf="!newCoin" class="mb-3 md:space-y-2 w-full text-xs">
-                                    <label class="font-semibold text-gray-600 py-2">Amount <abbr
-                                            title="required">*</abbr></label>
-                                    <input placeholder="Amount" [(ngModel)]="newCrypto.amount"
-                                        class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
-                                        required="required" type="number">
-                                    <p class="text-red text-xs hidden">Please fill out this field.</p>
-                                </div>
-                                <div *ngIf="!newCoin" class="mb-3 md:space-y-2 w-full text-xs">
-                                    <label class="font-semibold text-gray-600 py-2">Money spent <abbr
-                                            title="required">*</abbr></label>
-                                    <input placeholder="Price bought" [(ngModel)]="newCrypto.price"
-                                        class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
-                                        required="required" type="text">
-                                    <p class="text-red text-xs hidden">Please fill out this field.</p>
-                                </div>
-                            </div>
-                            <div *ngIf="!newCoin" class="mb-3 md:space-y-2 w-full text-xs">
-                                <label class=" font-semibold text-gray-600 py-2">Company Website</label>
-                                <div class="flex flex-wrap items-stretch w-full mb-4 relative">
-                                    <div class="flex">
-                                        <span
-                                            class="flex items-center leading-normal bg-grey-lighter border-1 rounded-r-none border 
+                                    <label class=" font-semibold text-gray-600 py-2">Company Website</label>
+                                    <div class="flex flex-wrap items-stretch w-full mb-4 relative">
+                                        <div class="flex">
+                                            <span class="flex items-center leading-normal bg-grey-lighter border-1 rounded-r-none border 
                                             border-r-0 border-blue-300 px-3 whitespace-no-wrap text-grey-dark text-sm w-12 h-10 bg-blue-300 
                                             justify-center items-center  text-xl rounded-lg text-white">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 
                                                     0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 
                                                     12a9 9 0 11-18 0 9 9 0 0118 0z">
-                                                </path>
-                                            </svg>
-                                        </span>
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <input type="text" [(ngModel)]="newCrypto.website" name="website"
+                                            class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border border-l-0 h-10 
+                                        border-grey-light rounded-lg rounded-l-none px-3 relative focus:border-blue focus:shadow" placeholder="https://">
                                     </div>
-                                    <input type="text" [(ngModel)]="newCrypto.website"
-                                        class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border border-l-0 h-10 
-                                        border-grey-light rounded-lg rounded-l-none px-3 relative focus:border-blue focus:shadow"
-                                        placeholder="https://">
                                 </div>
-                            </div>
-                            <div *ngIf="!newCoin" class="md:flex md:flex-row md:space-x-4 w-full text-xs">
-                                <div class="w-full flex flex-col mb-3">
-                                    <label class="font-semibold text-gray-600 py-2">Date</label>
-                                    <input [(ngModel)]="newCrypto.date"
-                                        class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
-                                        type="date">
+                                <div *ngIf="!newCoin" class="md:flex md:flex-row md:space-x-4 w-full text-xs">
+                                    <div class="w-full flex flex-col mb-3">
+                                        <label class="font-semibold text-gray-600 py-2">Date<abbr
+                                                title="required">*</abbr></label>
+                                        <input [(ngModel)]="newCrypto.date" id="date" name="date" type="date"
+                                            #date="ngModel" class="appearance-none block w-full bg-grey-lighter text-grey-darker 
+                                        border border-grey-lighter rounded-lg h-10 px-4" type="date">
+                                        <div class="alert alert-danger"
+                                            *ngIf="date.invalid && (date.dirty || date.touched)">
+                                            <div *ngIf="date?.errors?.required">
+                                                <p class="text-xs ml-1 my-1 text-red-500">The date is required</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-full flex flex-col mb-3">
+                                        <label class="font-semibold text-gray-600 py-2">Operation<abbr
+                                                title="required">*</abbr></label>
+                                        <select [(ngModel)]="newCrypto.operation" id="operation" name="operation"
+                                            type="operation" #operation="ngModel" class="block w-full bg-grey-lighter text-grey-darker
+                                        border border-grey-lighter rounded-lg h-10 px-4 md:w-full" required="required">
+                                            <option value="">Seleted operation</option>
+                                            <option value="Buy">Buy</option>
+                                            <option value="Sell">Sell</option>
+                                        </select>
+                                        <div class="alert alert-danger"
+                                            *ngIf="operation.invalid && (operation.dirty || operation.touched)">
+                                            <div *ngIf="operation?.errors?.required">
+                                                <p class="text-xs ml-1 my-1 text-red-500">The operation is required
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="w-full flex flex-col mb-3">
-                                    <label class="font-semibold text-gray-600 py-2">Operation<abbr
-                                            title="required">*</abbr></label>
-                                    <select [(ngModel)]="newCrypto.operation"
-                                        class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full "
-                                        required="required">
-                                        <option value="">Seleted operation</option>
-                                        <option value="Buy">Buy</option>
-                                        <option value="Sell">Sell</option>
-                                    </select>
-                                    <p class="text-sm text-red-500 hidden mt-3" id="error">Please fill out this field.
-                                    </p>
-                                </div>
-                            </div>
-                            <div *ngIf="!newCoin" class="flex-auto w-full mb-1 text-xs space-y-2">
-                                <label class="font-semibold text-gray-600 py-2">Description</label>
-                                <textarea required="" name="message" id="" [(ngModel)]="newCrypto.description"
-                                    class="w-full min-h-[100px] max-h-[300px] h-28 appearance-none block w-full bg-grey-lighter 
+                                <div *ngIf="!newCoin" class="flex-auto w-full mb-1 text-xs space-y-2">
+                                    <label class="font-semibold text-gray-600 py-2">Description</label>
+                                    <textarea name="description" id="" [(ngModel)]="newCrypto.description"
+                                        name="description" class="w-full min-h-[100px] max-h-[300px] h-28 appearance-none block w-full bg-grey-lighter 
                                     text-grey-darker border border-grey-lighter rounded-lg  py-4 px-4"
-                                    placeholder="Enter your transaction info" spellcheck="false"></textarea>
-                                <p class="text-xs text-gray-400 text-left my-3">You inserted 0 characters</p>
-                            </div>
-                            <p class="text-xs text-red-500 text-right my-3">Required fields are marked with an
-                                asterisk <abbr title="Required field">*</abbr></p>
-                            <div class="mt-5 text-right md:space-x-3 md:block flex flex-col-reverse">
-                                <button (click)="addCrypto()"
-                                    class="mb-2 md:mb-0 bg-green-400 px-5 py-2 text-sm shadow-sm font-medium tracking-wider 
-                                    text-white rounded-full hover:shadow-lg hover:bg-green-500 ">Save</button>
-                            </div>
+                                        placeholder="Enter your transaction info" spellcheck="false"></textarea>
+                                    <p class="text-xs text-gray-400 text-left my-3">You inserted 0 characters</p>
+                                </div>
+                                <div *ngIf="!newCoin"
+                                    class="mt-5 text-right md:space-x-3 md:block flex flex-col-reverse">
+                                    <p class="text-xs text-red-500 text-right my-3">Required fields are marked
+                                        with an asterisk <abbr title="Required field">*</abbr>
+                                    </p>
+                                    <button (click)="addCrypto()" [disabled]="!cryptoForm.form.valid" class="mb-2 md:mb-0 bg-green-400 
+                                    px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg 
+                                    hover:bg-green-500 ">Save</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -158,8 +215,7 @@
         <div class="flex flex-col flex-1 w-full">
             <div class="grid grid-cols-12 gap-6 mt-5">
                 <div class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 
-                xl:col-span-3 intro-y bg-white"
-                    href="#">
+                xl:col-span-3 intro-y bg-white" href="#">
                     <div class="p-5">
                         <div class="flex justify-between">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-400" fill="none"
@@ -205,8 +261,7 @@
                     </div>
                 </div>
                 <div class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6
-                xl:col-span-3 intro-y bg-white"
-                    href="#">
+                xl:col-span-3 intro-y bg-white" href="#">
                     <div class="p-5">
                         <div class="flex justify-between">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-pink-600" fill="none"

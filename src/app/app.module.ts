@@ -19,6 +19,7 @@ import { RulesComponent } from './components/home/rules/rules.component';
 import { CommunityComponent } from './components/home/community/community.component';
 import { FooterComponent } from './components/home/footer/footer.component';
 import { HomeNavbarComponent } from './components/home/home-navbar/home-navbar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { HomeNavbarComponent } from './components/home/home-navbar/home-navbar.c
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ChartsModule
+    ChartsModule,
+    HttpClientModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
