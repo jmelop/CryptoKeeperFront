@@ -7,5 +7,5 @@ export class Crypto {
     operation: string;
     description: string;
     editable?: boolean;
-    id?: string;
+    _id?: string;
 }

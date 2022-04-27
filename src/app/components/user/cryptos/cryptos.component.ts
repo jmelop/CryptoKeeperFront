@@ -29,7 +29,7 @@ export class CryptosComponent implements OnInit {
   ngOnInit(): void {
     this.cryptoServices.getAllCryptos().subscribe(cryptos => {
       this.cryptos = cryptos;
-      this.getCryptosData();
+      this.calculateCryptoData();
     });
     this.cryptoTypeService.getAllCryptos().subscribe(cryptoTypes => {
       this.cryptoTypes = cryptoTypes;
@@ -47,13 +47,20 @@ export class CryptosComponent implements OnInit {
     });
   }
 
-  addCrypto(): void{
+  public handlePageChange(event: any): void {
+    this.page = event;
+    this.cryptos.map(crypto => {
+      crypto.editable = false;
+    });
+  }
+
+  addCrypto(): void {
     this.cryptoServices.post(this.newCrypto).subscribe(crypto => {
       if (typeof crypto !== undefined) {
         this.cryptos.push(crypto);
         this.newCrypto = new Crypto();
         this.newCoin = true;
-        this.getCryptosData();
+        this.calculateCryptoData();
         swal.fire('New record', 'New record added successfully', 'success');
       }
     }, () => {
@@ -75,20 +82,14 @@ export class CryptosComponent implements OnInit {
       });
   }
 
-  public handlePageChange(event: any): void {
-    this.page = event;
-    this.cryptos.map(crypto => {
-      crypto.editable = false;
-    });
-  }
-
-  getCrypto(): void{
+  getCrypto(): void {
     this.cryptoServices.getCrypto(this.findCrypto);
   }
 
-  updateCrypto(crypto: Crypto): void{
+  updateCrypto(crypto: Crypto): void {
     crypto.editable = false;
-    this.cryptoServices.updateCrypto(crypto.id!, crypto).subscribe(() => {
+    this.cryptoServices.updateCrypto(crypto._id!, crypto).subscribe(() => {
+      this.calculateCryptoData();
       swal.fire('Record updated', 'Record updated successfully', 'success');
     }, () => {
       swal.fire('Record updated', 'Error updated a record', 'error');
@@ -103,11 +104,11 @@ export class CryptosComponent implements OnInit {
       confirmButtonText: 'Delete'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.cryptoServices.deleteCrypto(crypto.id!)
+        this.cryptoServices.deleteCrypto(crypto._id!)
           .subscribe(() => {
-            const cryptosFiltered = this.cryptos.filter((cryp: Crypto) => cryp.id !== crypto.id);
+            const cryptosFiltered = this.cryptos.filter((cryp: Crypto) => cryp._id !== crypto._id);
             this.cryptos = cryptosFiltered;
-            this.getCryptosData();
+            this.calculateCryptoData();
             swal.fire('Record deleted', 'Record deleted successfully', 'success');
           }, () => {
             swal.fire('Record deleted', 'Error deleting a record', 'error');
@@ -116,17 +117,19 @@ export class CryptosComponent implements OnInit {
     });
   }
 
-  getCryptosData(): void {
+  calculateCryptoData(): void {
     const uniqueCryptos: string[] = [];
+    this.moneySpend = 0;
+    this.moneyReturned = 0;
     this.cryptos.map(crypto => {
       const exist = uniqueCryptos.find(unique => unique === crypto.crypto);
+      if (!exist) {
+        uniqueCryptos.push(crypto.crypto);
+      }
       if (crypto.operation === 'Buy') {
         this.moneySpend += crypto.price;
       } else {
         this.moneyReturned += crypto.price;
-      }
-      if (!exist) {
-        uniqueCryptos.push(crypto.crypto);
       }
     });
     this.numberCryptos = uniqueCryptos.length;
