@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveUser() {
+  saveUser(): void {
     this.authService.register(this.newUser).then(u => {
       if (u === 'OK') {
         this.router.navigateByUrl('/login');

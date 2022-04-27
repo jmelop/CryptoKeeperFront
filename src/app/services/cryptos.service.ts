@@ -1,47 +1,56 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import axios from 'axios';
 import { Crypto } from '../models/crypto.model';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CryptosService {
+
   apiUrl = 'http://localhost:4000/cryptos/';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getAllCryptos(): Promise<Crypto[]> {
-    return axios.get(this.apiUrl + '?limit=10&offset=20')
-      .then(rest => rest.data);
+  getAllCryptos(): Observable<Crypto[]> {
+    return this.http.get<Crypto[]>(this.apiUrl + '?limit=10&offset=20')
+      .pipe(
+        catchError(e => {
+          return throwError(e);
+        })
+      );
   }
 
-  post(crypto: Crypto) {
-    return axios.post(this.apiUrl, crypto).then(res => {
-      return res.data;
-    }).catch((err) => { throw err });
+  post(crypto: Crypto): Observable<Crypto> {
+    return this.http.post<Crypto>(this.apiUrl, crypto).pipe(
+      catchError(e => {
+        return throwError(e);
+      })
+    );
   }
 
-  getCrypto(id: string): Promise<Crypto> {
-    return axios.get(this.apiUrl + id).then(rest => rest.data).then(m => {
-      return {
-        crypto: m.crypto,
-        amount: m.amount,
-        price: m.price,
-        website: m.website,
-        date: m.date,
-        operation: m.operation,
-        description: m.description
-      };
-    });
+  getCrypto(id: string): Observable<Crypto> {
+    return this.http.get<Crypto>(this.apiUrl + id).pipe(
+      catchError(e => {
+        return throwError(e);
+      })
+    );
   }
 
-  updateCrypto(id: string, crypto: Crypto): Promise<Crypto> {
-    return axios.patch(this.apiUrl + id, crypto);
+  updateCrypto(id: string, crypto: Crypto): Observable<Crypto> {
+    return this.http.patch<Crypto>(this.apiUrl + id, crypto).pipe(
+      catchError(e => {
+        return throwError(e);
+      })
+    );
   }
 
-  deleteCrypto(id: string) {
-    return axios.delete(this.apiUrl + id).then(() => {
-      return 'OK';
-    });
-  };
+  deleteCrypto(id: string): Observable<Crypto> {
+    return this.http.delete<Crypto>(this.apiUrl + id).pipe(
+      catchError(e => {
+        return throwError(e);
+      })
+    );
+  }
 }

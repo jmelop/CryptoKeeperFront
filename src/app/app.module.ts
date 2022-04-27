@@ -20,6 +20,7 @@ import { CommunityComponent } from './components/home/community/community.compon
 import { FooterComponent } from './components/home/footer/footer.component';
 import { HomeNavbarComponent } from './components/home/home-navbar/home-navbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     ChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

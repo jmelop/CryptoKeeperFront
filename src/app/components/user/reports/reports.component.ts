@@ -43,8 +43,8 @@ export class ReportsComponent implements OnInit {
   constructor(private cryptoServices: CryptosService) { }
 
   ngOnInit(): void {
-    this.cryptoServices.getAllCryptos().then(u => {
-      this.cryptos = u;
+    this.cryptoServices.getAllCryptos().subscribe(cryptos => {
+      this.cryptos = cryptos;
       this.getDate();
       this.getCryptosData();
       this.getCryptoDataChart();
@@ -53,16 +53,16 @@ export class ReportsComponent implements OnInit {
     });
   }
 
-  getCryptosData() {
+  getCryptosData(): void{
     this.cryptos.map(crypto => {
       const exist = this.cryptoData.find(data => data.crypto === crypto.crypto);
-      if (exist && crypto.operation == 'Buy') {
+      if (exist && crypto.operation === 'Buy') {
         this.cryptoData.map(data => {
           if (data.crypto === crypto.crypto) {
             data.price += crypto.price;
           }
         });
-      } else if (crypto.operation == 'Buy') {
+      } else if (crypto.operation === 'Buy') {
         this.newCrypto.crypto = crypto.crypto;
         this.newCrypto.price = crypto.price;
         this.cryptoData.push(this.newCrypto);
@@ -71,19 +71,18 @@ export class ReportsComponent implements OnInit {
     });
   }
 
-  getCryptoDataChart() {
+  getCryptoDataChart(): void {
     this.cryptos.map(crypto => {
       const cryptoDate = new Date(crypto.date).getMonth();
       const dateMatch = this.lastNumberMonths.find(date => date === cryptoDate);
       const exist = this.profits.find(data => data.crypto === crypto.crypto && new Date(data.date).getMonth() === cryptoDate);
-      console.log(crypto)
-      if (exist && dateMatch && crypto.operation == 'Buy') {
+      if (exist && dateMatch && crypto.operation === 'Buy') {
         this.profits.map(data => {
           if (data.crypto === crypto.crypto) {
             data.price += crypto.price;
           }
         });
-      } else if (dateMatch && crypto.operation == 'Buy') {
+      } else if (dateMatch && crypto.operation === 'Buy') {
         this.newCrypto.crypto = crypto.crypto;
         this.newCrypto.price = crypto.price;
         this.newCrypto.date = crypto.date;
@@ -98,7 +97,7 @@ export class ReportsComponent implements OnInit {
     this.getProfit();
   }
 
-  getProfit() {
+  getProfit(): void {
     this.profitChartData = [];
     for (let i = 0; i <= 2; i++) {
       const arr: number[] = [];
@@ -123,13 +122,13 @@ export class ReportsComponent implements OnInit {
       this.tempProfitData = { data: [], label: '' };
       if (this.profitsChartLabel.length < 3) {
         for (let i = 0; i < (3 - this.profitsChartLabel.length); i++) {
-          this.profitsChartLabel.push("NO DATA");
+          this.profitsChartLabel.push('NO DATA');
         }
       }
     }
   }
 
-  getDate() {
+  getDate(): void {
     const TodayDate = new Date();
     const actualMonth = TodayDate.getMonth() + 1;
     for (let i = 0; i <= 3; i++) {

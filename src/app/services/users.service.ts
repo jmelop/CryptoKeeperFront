@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import axios from 'axios';
+import { throwError, Observable} from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +11,13 @@ export class UsersService {
 
   apiUrl = 'http://localhost:4000/users/';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getUser(id: string){
-    return axios.get(this.apiUrl + id)
-    .then(res => {
-      return 'OK';
-    });
+  getUser(id: string): Observable<User> {
+    return this.http.get<User>(this.apiUrl + id).pipe(
+      catchError(e => {
+        return throwError(e);
+      })
+    );
   }
 }

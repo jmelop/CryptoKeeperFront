@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router, private cookieService: CookieService) { }
 
   newLogin: User = new User();
-  loginError: boolean = false;
+  loginError = false;
 
   ngOnInit(): void {
     if (this.cookieService.get('token_access')) {
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  login() {
+  login(): void{
     this.authService.login(this.newLogin).subscribe(param => {
       if (param) {
         const token = param.token;
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       }
     }, () => {
       this.loginError = true;
-    })
+    });
   }
 
 }

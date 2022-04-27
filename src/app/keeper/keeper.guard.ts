@@ -10,7 +10,7 @@ export class KeeperGuard implements CanActivate {
 
   constructor(private cookieService: CookieService, private router: Router) { }
 
-  redirect(flag: boolean) {
+  redirect(flag: boolean): void {
     if (!flag) {
       this.router.navigate(['/', 'login']);
     }

@@ -1,32 +1,39 @@
 import { Injectable } from '@angular/core';
-import axios from 'axios';
 import { CryptoType } from '../models/crypto-type.model';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CryptoTypeService {
+
   apiUrl = 'http://localhost:4000/cryptotype/';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getAllCryptos(): Promise<CryptoType[]> {
-    return axios.get(this.apiUrl).then(rest => rest.data);
+  getAllCryptos(): Observable<CryptoType[]> {
+    return this.http.get<CryptoType[]>(this.apiUrl).pipe(
+      catchError(e => {
+        return throwError(e);
+      })
+    );
   }
 
-  post(cryptoType: CryptoType) {
-    return axios.post(this.apiUrl, cryptoType).then(res => {
-      return res.data;
-    }).catch((err) => { throw err });
+  post(cryptoType: CryptoType): Observable<CryptoType> {
+    return this.http.post<CryptoType>(this.apiUrl, cryptoType).pipe(
+      catchError(e => {
+        return throwError(e);
+      })
+    );
   }
 
-  getCrypto(name: string): Promise<CryptoType> {
-    return axios.get(this.apiUrl + name).then(rest =>
-      rest.data).then(crypto => {
-        return {
-          name: crypto.name,
-          shortname: crypto.shortname
-        };
-      });
+  getCrypto(name: string): Observable<CryptoType> {
+    return this.http.get<CryptoType>(this.apiUrl + name).pipe(
+      catchError(e => {
+        return throwError(e);
+      })
+    );
   }
 }
