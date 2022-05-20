@@ -1,27 +1,40 @@
 <nav class="bg-gray-900">
-  <div class="relative m-auto mx-24 grid grid-cols-3 px-4 justify-center">
-    <div class="text-left my-4">
-      <img class="h-10" src="../../../assets/crypto-logos/ETH.png" />
-    </div>
-    <div class="my-4 flex text-center justify-center items-center">
-      <a href="/home" routerLinkActive="bg-gray-700" [routerLink]="['/home']" [routerLinkActiveOptions]="{exact: true}"
-        class="text-gray-200 mr-4 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-      <a href="/cryptos" routerLinkActive="bg-gray-600" [routerLink]="['/cryptos']"
-        [routerLinkActiveOptions]="{exact: true}"
-        class="text-gray-200 mr-4 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Crypto</a>
-      <a href="/news" routerLinkActive="bg-gray-600" [routerLink]="['/news']" [routerLinkActiveOptions]="{exact: true}"
-        class="text-gray-200 mr-4 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">News</a>
-      <a href="/reports" routerLinkActive="bg-gray-600" [routerLink]="['/reports']"
-        [routerLinkActiveOptions]="{exact: true}"
-        class="text-gray-200 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Reports</a>
-    </div>
-    <div class="my-4 flex ml-auto cursor-pointer">
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-list"
-        viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 
+  <div class="relative m-auto mx-24">
+    <div class="grid grid-cols-2 px-4 justify-center">
+      <div class="my-4 flex items-center ml-10">
+        <div class="bg-white w-11 rounded-full border border-black">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M17.0514 4.32178L18.4656 5.73599L14.223 9.97863L18.4656 14.2213L17.0514 15.6355L11.3946 9.97863L17.0514 4.32178Z"
+              fill="rgb(55 48 163)" />
+            <path
+              d="M6.94864 19.6785L5.53442 18.2643L9.77706 14.0216L5.53442 9.77897L6.94864 8.36476L12.6055 14.0216L6.94864 19.6785Z"
+              fill="rgb(55 48 163)" />
+          </svg>
+        </div>
+        <div class="ml-8">
+          <a href="/home" routerLinkActive="bg-gray-700" [routerLink]="['/home']"
+            [routerLinkActiveOptions]="{exact: true}"
+            class="text-gray-200 mr-4 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+          <a href="/cryptos" routerLinkActive="bg-gray-600" [routerLink]="['/cryptos']"
+            [routerLinkActiveOptions]="{exact: true}"
+            class="text-gray-200 mr-4 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Crypto</a>
+          <a href="/news" routerLinkActive="bg-gray-600" [routerLink]="['/news']"
+            [routerLinkActiveOptions]="{exact: true}"
+            class="text-gray-200 mr-4 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">News</a>
+          <a href="/reports" routerLinkActive="bg-gray-600" [routerLink]="['/reports']"
+            [routerLinkActiveOptions]="{exact: true}"
+            class="text-gray-200 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Reports</a>
+        </div>
+      </div>
+      <div class="my-4 flex ml-auto cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-list"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 
           1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 
           1 0 1H3a.5.5 0 0 1-.5-.5z" />
-      </svg>
+        </svg>
+      </div>
     </div>
   </div>
 </nav>

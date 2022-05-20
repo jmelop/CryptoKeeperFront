@@ -1,78 +1,22 @@
-<div class="relative bg-white overflow-hidden">
-    <div class="max-w-7xl mx-auto">
-        <div class="relative z-10 bg-white lg:max-w-2xl lg:w-full pb-8">
-            <svg class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2"
-                fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                <polygon points="50,0 100,0 50,100 0,100" />
-            </svg>
+<nav class="max-w-7xl mx-auto px-4 py-4 border-b border-gray-300">
+    <div className="flex items-center w-full">
+        <div class="grid grid-cols-2 gap-x-4 px-4 text-center">
+            <div class="flex items-center mx-auto">
+                <svg width="42" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M17.0514 4.32178L18.4656 5.73599L14.223 9.97863L18.4656 14.2213L17.0514 15.6355L11.3946 9.97863L17.0514 4.32178Z"
+                        fill="rgb(55 48 163)" />
+                    <path
+                        d="M6.94864 19.6785L5.53442 18.2643L9.77706 14.0216L5.53442 9.77897L6.94864 8.36476L12.6055 14.0216L6.94864 19.6785Z"
+                        fill="rgb(55 48 163)" />
+                </svg>
+                <a href="#" class="font-medium text-gray-500 hover:text-gray-900 ml-4 mr-3">Home</a>
+                <a href="community" class="font-medium text-gray-500 hover:text-gray-900 mr-3">Community</a>
+            </div>
             <div>
-                <div class="relative pt-6 px-4 sm:px-6 lg:px-8">
-                    <nav class="relative flex items-center justify-between sm:h-10 lg:justify-start"
-                        aria-label="Global">
-                        <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
-                            <div class="flex items-center justify-between w-full md:w-auto">
-                                <a href="#">
-                                    <span class="sr-only">Workflow</span>
-                                    <img class="h-8 w-auto sm:h-10"
-                                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg">
-                                </a>
-                                <div class="-mr-2 flex items-center md:hidden">
-                                    <button type="button"
-                                        class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 
-                                        hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-                                        aria-expanded="false">
-                                        <span class="sr-only">Open main menu</span>
-                                        <!-- Heroicon name: outline/menu -->
-                                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M4 6h16M4 12h16M4 18h16" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
-                            <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Product</a>
-                            <a href="community" class="font-medium text-gray-500 hover:text-gray-900">Community</a>
-                            <a href="login" class="font-medium text-indigo-600 hover:text-indigo-500">Log in</a>
-                        </div>
-                    </nav>
-                </div>
-                <div class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
-                    <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
-                        <div class="px-5 pt-4 flex items-center justify-between">
-                            <div>
-                                <img class="h-8 w-auto"
-                                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="">
-                            </div>
-                            <div class="-mr-2">
-                                <button type="button"
-                                    class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 
-                                    hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                                    <span class="sr-only">Close main menu</span>
-                                    <!-- Heroicon name: outline/x -->
-                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="px-2 pt-2 pb-3 space-y-1">
-                            <a href="#"
-                                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Product</a>
-                            <a href="#"
-                                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Features</a>
-                        </div>
-                        <a href="#"
-                            class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">
-                            Log in
-                        </a>
-                    </div>
-                </div>
+                <a href="login" class="inline-flex items-center py-2 px-4 text-sm 
+                font-medium text-center text-white bg-indigo-600 rounded-lg hover:bg-indigo-300">Login</a>
             </div>
         </div>
     </div>
-</div>
+</nav>
