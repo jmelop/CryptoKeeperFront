@@ -376,10 +376,11 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <p *ngIf="cryptos.length == 0" class="text-center my-4">NO DATA</p>
                     </div>
                 </div>
             </div>
-            <div id="pagination" class="mt-8 mx-8 flex justify-center">
+            <div *ngIf="cryptos.length > 0" id="pagination" class="mt-8 mx-8 flex justify-center">
                 <pagination-controls (pageChange)="handlePageChange($event)"></pagination-controls>
             </div>
         </div>
