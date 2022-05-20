@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/user/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarComponent } from './components/user/navbar/navbar.component';
 import { RegisterComponent } from './components/home/register/register.component';
 import { CryptosComponent } from './components/user/cryptos/cryptos.component';
 import { LandingComponent } from './components/home/landing/landing.component';
