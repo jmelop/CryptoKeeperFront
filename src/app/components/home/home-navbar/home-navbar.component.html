@@ -10,13 +10,43 @@
                         d="M6.94864 19.6785L5.53442 18.2643L9.77706 14.0216L5.53442 9.77897L6.94864 8.36476L12.6055 14.0216L6.94864 19.6785Z"
                         fill="rgb(79 70 229)" />
                 </svg>
-                <a href="#" class="font-medium text-gray-800 hover:text-gray-500 ml-24 mr-6">Home</a>
-                <a href="community" class="font-medium text-gray-800 hover:text-gray-500">Community</a>
+                <div class="hidden md:flex">
+                    <a href="#" class="text-gray-600 hover:text-gray-300 ml-24 mr-6">Home</a>
+                    <a href="community" class="text-gray-600 hover:text-gray-300">Community</a>
+                </div>
             </div>
-            <div>
+            <div class="hidden md:flex md:justify-end">
                 <a href="login" class="inline-flex items-center py-2 px-4 text-sm 
                 font-medium text-center text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 shadow-2xl">Login</a>
             </div>
+            <!-- Mobile menu button -->
+            <div class="md:hidden flex justify-end">
+                <button class="outline-none mn-button">
+                    <svg class="text-gray-400 hover:text-indigo-900" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M2 6C2 5.44772 2.44772 5 3 5H21C21.5523 5 22 5.44772 22 6C22 6.55228 21.5523 7 21 7H3C2.44772 7 2 6.55228 2 6Z"
+                            fill="currentColor" />
+                        <path
+                            d="M2 12.0322C2 11.4799 2.44772 11.0322 3 11.0322H21C21.5523 11.0322 22 11.4799 22 12.0322C22 12.5845 21.5523 13.0322 21 13.0322H3C2.44772 13.0322 2 12.5845 2 12.0322Z"
+                            fill="currentColor" />
+                        <path
+                            d="M3 17.0645C2.44772 17.0645 2 17.5122 2 18.0645C2 18.6167 2.44772 19.0645 3 19.0645H21C21.5523 19.0645 22 18.6167 22 18.0645C22 17.5122 21.5523 17.0645 21 17.0645H3Z"
+                            fill="currentColor" />
+                    </svg>
+                </button>
+            </div>
         </div>
+    </div>
+    <!-- mobile menu -->
+    <div class="hidden mobile-menu mt-4">
+        <ul class="">
+            <li class="active">
+                <a href="#" class="block text-sm text-gray-600 hover:bg-indigo-100 px-2 py-4">Home</a>
+            </li>
+            <li>
+                <a href="community" class="block text-sm text-gray-600 hover:bg-indigo-100 px-2 py-4">Community</a>
+            </li>
+        </ul>
     </div>
 </nav>

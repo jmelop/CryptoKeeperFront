@@ -10,6 +10,12 @@ export class HomeNavbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    const btn = document.querySelector("button.mn-button");
+    const menu = document.querySelector(".mobile-menu");
+    
+    btn!.addEventListener("click", () => {
+      menu!.classList.toggle("hidden");
+    });
   }
 
 }
