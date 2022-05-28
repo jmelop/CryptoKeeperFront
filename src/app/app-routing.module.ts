@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AboutUsComponent } from './components/home/about-us/about-us.component';
 import { CommunityComponent } from './components/home/community/community.component';
 import { LandingComponent } from './components/home/landing/landing.component';
 import { LoginComponent } from './components/home/login/login.component';
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path: 'rules',
     component: RulesComponent
+  },
+  {
+    path: 'about-us',
+    component: AboutUsComponent
   },
   {
     path: 'reports',

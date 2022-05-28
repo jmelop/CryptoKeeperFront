@@ -21,6 +21,7 @@ import { FooterComponent } from './components/home/footer/footer.component';
 import { HomeNavbarComponent } from './components/home/home-navbar/home-navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { AboutUsComponent } from './components/home/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     RulesComponent,
     CommunityComponent,
     FooterComponent,
-    HomeNavbarComponent
+    HomeNavbarComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,
