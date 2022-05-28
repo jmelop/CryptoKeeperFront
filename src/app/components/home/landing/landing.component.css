@@ -1,8 +1,11 @@
-body{
+body {
     background-color: rgb(255, 255, 255) !important;
 }
 
 .bg-img {
     background-image: url('../../../../assets/img/wall.jpg');
-  }
-  
+}
+
+.cut {
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+}

@@ -6,6 +6,12 @@ module.exports = {
       colors: {
         'regal': '#17252A',
         'regal-dark': '#1F2833'
+      },
+      boxShadow: {
+        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)'
+      },
+      margin: {
+        '152': '30rem',
       }
     },
   },
