@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/cryptos');
     }
   }
-
-  login(): void{
+  
+  public login(): void {
     this.authService.login(this.newLogin).subscribe(param => {
       if (param) {
         const token = param.token;

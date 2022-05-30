@@ -40,7 +40,7 @@ export class CryptosComponent implements OnInit {
     }
   }
 
-  editState(crypto: Crypto): void {
+  public editState(crypto: Crypto): void {
     this.cryptos.map((u: Crypto) => {
       u.editable = false;
       crypto.editable = true;
@@ -54,7 +54,7 @@ export class CryptosComponent implements OnInit {
     });
   }
 
-  addCrypto(): void {
+  public addCrypto(): void {
     this.cryptoServices.post(this.newCrypto).subscribe(crypto => {
       if (typeof crypto !== undefined) {
         this.cryptos.push(crypto);
@@ -68,7 +68,7 @@ export class CryptosComponent implements OnInit {
     });
   }
 
-  addCryptoType(): void {
+  public addCryptoType(): void {
     this.cryptoTypeService.post(this.newCryptoType)
       .subscribe(crypto => {
         if (typeof crypto !== undefined) {
@@ -80,10 +80,6 @@ export class CryptosComponent implements OnInit {
       }, () => {
         swal.fire('New coin', 'Error adding a new coin', 'error');
       });
-  }
-
-  getCrypto(): void {
-    this.cryptoServices.getCrypto(this.findCrypto);
   }
 
   updateCrypto(crypto: Crypto): void {
@@ -117,7 +113,14 @@ export class CryptosComponent implements OnInit {
     });
   }
 
-  calculateCryptoData(): void {
+  onChangeCrypto(crypto: string): void {
+    const avatar = window.document.getElementById('avatar');
+    if (avatar !== null) {
+      avatar.setAttribute('src', this.imgRoute + crypto + '.png');
+    }
+  }
+
+  private calculateCryptoData(): void {
     const uniqueCryptos: string[] = [];
     this.moneySpend = 0;
     this.moneyReturned = 0;
@@ -135,10 +138,8 @@ export class CryptosComponent implements OnInit {
     this.numberCryptos = uniqueCryptos.length;
   }
 
-  onChangeCrypto(crypto: string): void {
-    const avatar = window.document.getElementById('avatar');
-    if (avatar !== null) {
-      avatar.setAttribute('src', this.imgRoute + crypto + '.png');
-    }
+  private getCrypto(): void {
+    this.cryptoServices.getCrypto(this.findCrypto);
   }
+  
 }

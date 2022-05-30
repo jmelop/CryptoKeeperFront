@@ -22,13 +22,11 @@ export class AuthService {
         );
     }
 
-    register(user: User) {
-        return axios.post(this.apiUrl + 'register', user).then(u => {
-            if (u.data) {
-                return 'OK';
-            } else {
-                return 'Error';
-            }
-        });
+    register(user: User): Observable<any> {
+        return this.http.post<User>(this.apiUrl + 'register', user).pipe(
+            catchError(e => {
+                return throwError(e);
+            })
+        );
     }
 }
