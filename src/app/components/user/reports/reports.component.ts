@@ -53,7 +53,7 @@ export class ReportsComponent implements OnInit {
     });
   }
 
-  getCryptosData(): void{
+  getCryptosData(): void {
     this.cryptos.map(crypto => {
       const exist = this.cryptoData.find(data => data.crypto === crypto.crypto);
       if (exist && crypto.operation === 'Buy') {
@@ -132,9 +132,15 @@ export class ReportsComponent implements OnInit {
     const TodayDate = new Date();
     const actualMonth = TodayDate.getMonth() + 1;
     for (let i = 0; i <= 3; i++) {
-      this.lastNumberMonths.push(actualMonth - i);
-      this.lastStringMonths.push(this.monthNames[actualMonth - i]);
+      if (actualMonth - i >= 12) {
+        this.lastNumberMonths.push(1);
+        this.lastStringMonths.push(this.monthNames[1]);
+      } else {
+        this.lastNumberMonths.push(actualMonth - i);
+        this.lastStringMonths.push(this.monthNames[actualMonth - i]);
+      }
     }
+
     this.lastStringMonths = this.lastStringMonths.reverse();
     this.lastNumberMonths = this.lastNumberMonths.reverse();
   }
