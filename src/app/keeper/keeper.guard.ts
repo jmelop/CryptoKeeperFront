@@ -1,31 +1,35 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class KeeperGuard implements CanActivate {
+export class KeeperGuard {
+  constructor(private cookieService: CookieService, private router: Router) {}
 
-  constructor(private cookieService: CookieService, private router: Router) { }
-
-  redirect(flag: boolean): void {
-    if (!flag) {
-      this.router.navigate(['/', 'login']);
-    }
+  private redirect(): UrlTree {
+    return this.router.createUrlTree(['/', 'login']);
   }
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate():
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
     const cookie = this.cookieService.check('token_access');
     const checkCookie = this.cookieService.get('token_access');
-    if (checkCookie !== 'undefined') {
-      this.redirect(cookie);
+
+    if (cookie && checkCookie !== 'undefined') {
+      return true;
     } else {
-      this.redirect(false);
+      return this.redirect();
     }
-    return cookie;
   }
 }
