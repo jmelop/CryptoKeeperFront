@@ -24,7 +24,7 @@
     "autoprefixer": "^10.4.17",
     "axios": "^1.6.4",
     "bootstrap": "^5.3.2",
-    "chart.js": "^4.4.1",
+    "chart.js": "^4.4.4",
     "eslint": "^8.57.0",
     "jwt-decode": "^4.0.0",
     "ng2-charts": "^5.0.4",

@@ -19,7 +19,7 @@
                     Profit
                 </h2>
                 <div>
-                    <canvas *ngIf="cryptoData.length > 0" baseChart [chartType]="'line'" [legend]="true"
+                    <canvas *ngIf="cryptoData.length > 0" baseChart [type]="'line'" [legend]="true"
                         [datasets]="profitChartData" [labels]="profitChartLabels" [options]="profitChartOptions">
                     </canvas>
                 </div>
@@ -31,8 +31,8 @@
                     Money spent
                 </h2>
                 <div>
-                    <canvas *ngIf="cryptoData.length > 0" baseChart [data]="doughnutChartData"
-                        [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="pieChartColors">
+                    <canvas *ngIf="cryptoData.length > 0" baseChart [datasets]="doughnutChartDataset"
+                        [labels]="doughnutChartLabels" [type]="'doughnut'">
                     </canvas>
                 </div>
                 <p class="my-8 text-center" *ngIf="cryptoData.length == 0">No data</p>

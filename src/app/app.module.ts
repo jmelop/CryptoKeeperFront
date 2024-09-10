@@ -10,7 +10,7 @@ import { CryptosComponent } from './components/user/cryptos/cryptos.component';
 import { LandingComponent } from './components/home/landing/landing.component';
 import { LoginComponent } from './components/home/login/login.component';
 import { ReportsComponent } from './components/user/reports/reports.component';
-import { ChartsModule } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
 import { CookieService } from 'ngx-cookie-service';
 import { NewsComponent } from './components/user/news/news.component';
 import { PrivacyPolicyComponent } from './components/home/privacy-policy/privacy-policy.component';
@@ -46,7 +46,7 @@ import { AboutUsComponent } from './components/home/about-us/about-us.component'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ChartsModule,
+    NgChartsModule,
     HttpClientModule,
     NgxPaginationModule
   ],
