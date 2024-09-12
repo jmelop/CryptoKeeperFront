@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "CryptoKeeperFront:build"
+            "buildTarget": "CryptoKeeperFront:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "CryptoKeeperFront:build:production"
+              "buildTarget": "CryptoKeeperFront:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "CryptoKeeperFront:build"
+            "buildTarget": "CryptoKeeperFront:build"
           }
         },
         "test": {
