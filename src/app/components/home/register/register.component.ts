@@ -18,6 +18,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   saveUser(): void {
+    if (!this.newUser.email || !this.newUser.name || !this.newUser.password) {
+      swal.fire('Error', 'All fields are required', 'error');
+      return;
+    }
+  
     this.authService.register(this.newUser).subscribe({
       next: () => {
         swal.fire('User created', 'User created successfully', 'success');
