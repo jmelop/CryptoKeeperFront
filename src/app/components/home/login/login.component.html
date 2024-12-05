@@ -37,9 +37,6 @@
                     <div *ngIf="password?.errors?.required">
                         <p class="text-xs ml-1 my-1 text-red-500">The password is required</p>
                     </div>
-                    <div *ngIf="password?.errors?.minlength">
-                        <p class="text-xs ml-1 my-1 text-red-500">The password should has 6 characters</p>
-                    </div>
                 </div>
                 <div *ngIf="loginError">
                     <p class="text-xs ml-1 my-1 text-red-500">* The entered password is not correct or the email address
