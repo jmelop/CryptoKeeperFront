@@ -7,25 +7,31 @@ import swal from 'sweetalert2';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
   public newUser: User = { name: '', email: '', password: '', role: 'user' };
   public confirmPassword = '';
 
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   saveUser(): void {
-    this.authService.register(this.newUser).subscribe(() => {
-      swal.fire('User created', 'User created successfully', 'success');
-      this.router.navigateByUrl('/login');
-    }, () => {
-      swal.fire('User created', 'Error creating a new user', 'error');
+    if (!this.newUser.email || !this.newUser.name || !this.newUser.password) {
+      swal.fire('Error', 'All fields are required', 'error');
+      return;
+    }
+  
+    this.authService.register(this.newUser).subscribe({
+      next: () => {
+        swal.fire('User created', 'User created successfully', 'success');
+        this.router.navigateByUrl('/login');
+      },
+      error: (err) => {
+        const errorMessage = err.error?.message || 'Unexpected error occurred';
+        swal.fire('Error', errorMessage, 'error');
+      },
     });
   }
 }
