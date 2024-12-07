@@ -14,8 +14,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(user: User): Observable<any> {
-    return this.http.post<User>(this.apiUrl + 'login', user).pipe(
+  login(user: User): Observable<ApiResponseLogin> {
+    return this.http.post<ApiResponseLogin>(this.apiUrl + 'login', user).pipe(
       catchError((e) => {
         return throwError(() => e);
       })
@@ -30,4 +30,11 @@ export class AuthService {
     );
   }
   
+}
+
+export class ApiResponseLogin {
+  success: boolean;
+  message: string;
+  error: any | null;
+  token: string;
 }
