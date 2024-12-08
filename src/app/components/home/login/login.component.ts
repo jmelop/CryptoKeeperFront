@@ -65,4 +65,8 @@ export class LoginComponent implements OnInit {
   isFormInvalid(): boolean {
     return !this.newLogin.email || !this.newLogin.password;
   }
+
+  goToRegister(): void {
+    this.router.navigateByUrl('/register');
+  }
 }
