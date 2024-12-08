@@ -51,9 +51,8 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (err) => {
-        console.error('Login error:', err);
         this.loginError = true;
-        this.errorMessage = err;
+        this.errorMessage = err?.error?.message;
       },
     });
   }
