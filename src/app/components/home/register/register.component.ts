@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
       swal.fire('Error', 'All fields are required', 'error');
       return;
     }
-  
+
     this.authService.register(this.newUser).subscribe({
       next: () => {
         swal.fire('User created', 'User created successfully', 'success');
@@ -37,5 +37,14 @@ export class RegisterComponent implements OnInit {
 
   goBack(): void {
     this.router.navigateByUrl('/login');
+  }
+
+  isFormInvalid(): boolean {
+    return (
+      this.confirmPassword !== this.newUser.password ||
+      !this.newUser.email ||
+      !this.newUser.name ||
+      !this.newUser.password
+    );
   }
 }
